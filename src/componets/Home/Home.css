@@ -1,0 +1,80 @@
+.home {
+    height: 100vh;
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: auto;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .text {
+    color: white;
+    flex: 1;
+    letter-spacing: 0.2cm;
+  }
+  .text > * {
+    margin-top: 1rem;
+    margin-bottom: 1rem; 
+  }
+  .banner {
+    scale: 0.7;
+    flex: 1;
+    animation: bannerAni 1.5s infinite;
+  }
+
+  @keyframes bannerAni {
+      50% {
+        transform: translateY(-10px); 
+        animation-timing-function: steps(100);
+      }
+      100% {
+        transform: translateY(0);
+      }
+  }
+  
+  .img {
+    max-width: 100%; 
+    height: auto;
+  }
+
+  .h1{
+    color: #7289DA;
+  }
+
+  .p {
+    color: #bbb;
+    opacity: 0.9;
+  }
+
+  .Animation {
+    background: white;
+    height: 50vh;
+  }
+
+  .downScroll {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    margin: 0 auto;
+    cursor: pointer;
+    color: whitesmoke;
+    animation: ScrollAni 1.5s infinite;
+  }
+
+  @keyframes ScrollAni {
+    50% {
+      transform: translateY(-3px); 
+      animation-timing-function: steps(100);
+    }
+    100% {
+      transform: translateY(0);
+    }
+}

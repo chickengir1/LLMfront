@@ -1,0 +1,80 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs
+logs
+
+# Node modules
+node_modules
+
+# Package manager files
+package-lock.json
+package.json
+
+# Build files
+dist
+dist-ssr
+
+# Documentation
+README.md
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+
+# IDE settings
+.idea
+
+# Mac OS specific files
+.DS_Store
+
+# Visual Studio specific files
+*.Suo
+*.ntvs*
+*.njsproj
+
+# WebStorm specific files
+*.รไท
+
+# Service Worker files
+*.SW?
+
+# Environment variables
+env.json
+.env
+
+# API keys
+credentials.json
+api_key.txt
+
+# Temporary files
+tmp/*
+.cache/*
+
+# Test code
+test/*
+
+# Translation files
+locale/*
