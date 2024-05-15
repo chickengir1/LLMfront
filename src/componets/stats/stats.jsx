@@ -7,6 +7,7 @@ const Stats = () => {
 
   const ClickEvent = () => {
     setTextarea(true);
+    setInputValue('');
   };
 
   const CancelEvent = () => {
