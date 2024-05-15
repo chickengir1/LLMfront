@@ -29,7 +29,6 @@ logs
 node_modules
 
 # Package manager files
-package-lock.json
 package.json
 
 # Build files
