@@ -70,4 +70,4 @@ locale/*
 .eslintrc.cjs
 
 
-dist/
+dist
