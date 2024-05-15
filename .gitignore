@@ -8,8 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
-dist-ssr
+
 *.local
 
 # Editor directories and files
@@ -34,8 +33,7 @@ package-lock.json
 package.json
 
 # Build files
-dist
-dist-ssr
+
 
 # Documentation
 README.md
