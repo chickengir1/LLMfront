@@ -78,3 +78,5 @@ test/*
 
 # Translation files
 locale/*
+
+.eslintrc.cjs
