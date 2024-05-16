@@ -1,17 +1,11 @@
-.home {
-    height: 100vh;
-    width: 80vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin: auto;
-}
-
 .content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100vh;
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: auto;
   }
 
   .text {
@@ -20,8 +14,18 @@
     letter-spacing: 0.2cm;
   }
   .text > * {
-    margin-top: 1rem;
-    margin-bottom: 1rem; 
+    width: 80%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem; 
+  }
+  .h1{
+    color: #7289DA;
+    text-align: left;
+  }
+
+  .p {
+    color: #bbb;
+    opacity: 0.9;
   }
   .banner {
     scale: 0.7;
@@ -42,15 +46,6 @@
   .img {
     max-width: 100%; 
     height: auto;
-  }
-
-  .h1{
-    color: #7289DA;
-  }
-
-  .p {
-    color: #bbb;
-    opacity: 0.9;
   }
 
   .Animation {
