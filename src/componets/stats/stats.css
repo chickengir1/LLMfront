@@ -5,7 +5,7 @@
     background-color: #333;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     flex-direction: column;
 }
 .started{
@@ -28,13 +28,16 @@
   .text {
     display: flex; 
     justify-content: center;
-    align-items: center; 
+    align-items: center;
+    width: 50%; 
     height: 100%; 
     flex-direction: column;
     letter-spacing: 4px;
 }
-.text h1{
+
+.description{
     color: #7289DA;
+    text-align: center;
 }
 
 .btnbox{

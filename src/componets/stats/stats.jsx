@@ -46,7 +46,7 @@ const Stats = () => {
     <div>
       <div className="stats">
         <span className="text">
-          <h1>YouTube 알림을</h1> 사용해 볼 준비가 되셨나요 ?
+          <h1 className="description">YouTube 알림을</h1> 사용해 볼 준비가 되셨나요 ?
         </span>
         <div className="btnbox">
           {!textarea && (
