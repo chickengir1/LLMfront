@@ -80,7 +80,7 @@ const Stats = () => {
               onChange={handleChange}
             />
             <div className="row">
-              <button className="submit" onClick={AiGenerate}>
+              <button className="submit" onClick={AiGenerate} disabled={inputValue.trim() === ""}>
                 Generate
               </button>
               <button className="cancel" onClick={CancelEvent} >
