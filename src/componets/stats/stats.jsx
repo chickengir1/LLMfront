@@ -1,18 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./stats.css";
 
 const Stats = () => {
   const [textarea, setTextarea] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = 'hidden'; 
+    } else {
+      document.body.style.overflow = 'auto'; 
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [loading]);
 
   const ClickEvent = () => {
     setTextarea(true);
-    setInputValue('');
+    setInputValue("");
   };
 
   const CancelEvent = () => {
     setTextarea(false);
-    setInputValue('');
+    setInputValue("");
   };
 
   const handleChange = (event) => {
@@ -20,27 +32,30 @@ const Stats = () => {
   };
 
   const AiGenerate = async () => {
+    setLoading(true);
+    setTextarea(false);
     try {
-      const response = await fetch('아직 덜 만듦', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', 
-        },
-        body: JSON.stringify({ inputValue }),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Error');
-      }
-  
-      const data = await response.json();
-      console.log(data);
-  
+      // const response = await fetch("아직 덜 만듦", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ inputValue }),
+      // });
+
+      // if (!response.ok) {
+      //   throw new Error("Error");
+      // }
+
+      // const data = await response.json();
+      // console.log(data);
+      await new Promise(resolve => setTimeout(resolve, 2000));
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
-  
 
   return (
     <div>
@@ -50,7 +65,7 @@ const Stats = () => {
         </span>
         <div className="btnbox">
           {!textarea && (
-            <button className="started" onClick={ClickEvent}>
+            <button className="started" onClick={ClickEvent} disabled={loading}>
               GET STARTED
             </button>
           )}
@@ -68,12 +83,21 @@ const Stats = () => {
               <button className="submit" onClick={AiGenerate}>
                 Generate
               </button>
-              <button className="cancel" onClick={CancelEvent}>
+              <button className="cancel" onClick={CancelEvent} >
                 Cancel
               </button>
             </div>
           </div>
         )}
+        {loading &&
+          <div className="loading">
+            <div className="spinner">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        }
       </div>
     </div>
   );
