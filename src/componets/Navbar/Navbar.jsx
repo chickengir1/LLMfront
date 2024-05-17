@@ -17,6 +17,10 @@ const ReloadPage = () => {
 };
 
 const Navbar = () => {
+  const openAdminpage = () => {
+    window.open("/LLMfront/admin.html", "_blank");
+  }
+
   return (
     <div className="navbar">
       <a href="#" className="logo">
@@ -34,7 +38,7 @@ const Navbar = () => {
         </a>
       </div>
       <div className="manage-btn">
-        <button>Manage Server</button>
+        <button onClick={openAdminpage}>Manage Server</button>
       </div>
     </div>
   );
