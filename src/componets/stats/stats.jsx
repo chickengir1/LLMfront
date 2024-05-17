@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import Toast from "../toast/Toast";
 import "./stats.css";
 
 const Stats = () => {
   const [textarea, setTextarea] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState({ show: false, message: "", type: "" });
 
   useEffect(() => {
     if (loading) {
@@ -35,7 +37,8 @@ const Stats = () => {
     setLoading(true);
     setTextarea(false);
     try {
-      // const response = await fetch("아직 덜 만듦", {
+      // 실제 요청을 사용할 때 주석을 해제하세요.
+      // const response = await fetch("http://localhost:3000/api/generate", {
       //   method: "POST",
       //   headers: {
       //     "Content-Type": "application/json",
@@ -49,12 +52,20 @@ const Stats = () => {
 
       // const data = await response.json();
       // console.log(data);
+
+      // 여기는 예시로 2초 동안 기다리는 코드입니다.
       await new Promise(resolve => setTimeout(resolve, 2000));
+      setToast({ show: true, message: "생성이 완료되었습니다.", type: "success" }); // 성공 알림
     } catch (error) {
       console.error(error);
+      setToast({ show: true, message: "생성 중 오류가 발생했습니다.", type: "error" }); // 오류 알림
     } finally {
       setLoading(false);
     }
+  };
+
+  const closeToast = () => {
+    setToast({ show: false, message: "", type: "" });
   };
 
   return (
@@ -83,7 +94,7 @@ const Stats = () => {
               <button className="submit" onClick={AiGenerate} disabled={inputValue.trim() === ""}>
                 Generate
               </button>
-              <button className="cancel" onClick={CancelEvent} >
+              <button className="cancel" onClick={CancelEvent}>
                 Cancel
               </button>
             </div>
@@ -99,6 +110,13 @@ const Stats = () => {
           </div>
         }
       </div>
+      {toast.show && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={closeToast}
+        />
+      )}
     </div>
   );
 };
