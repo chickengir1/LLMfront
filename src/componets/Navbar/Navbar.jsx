@@ -15,11 +15,17 @@ const PageMove2 = (e) => {
 const ReloadPage = () => {
   window.location.reload();
 };
+window.adminWindow = null;
 
 const Navbar = () => {
-  const openAdminpage = () => {
-    window.open("/LLMfront/admin.html", "_blank");
-  }
+  const openAdminPage = () => {
+    if (!window.adminWindow || window.adminWindow.closed) {
+      window.adminWindow = window.open("/LLMfront/admin.html", "_blank");
+    } else {
+      window.adminWindow.focus();
+    }
+  };
+
 
   return (
     <div className="navbar">
@@ -38,7 +44,7 @@ const Navbar = () => {
         </a>
       </div>
       <div className="manage-btn">
-        <button onClick={openAdminpage}>Manage Server</button>
+        <button onClick={openAdminPage}>Manage Server</button>
       </div>
     </div>
   );
