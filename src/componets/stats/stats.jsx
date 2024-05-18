@@ -37,6 +37,7 @@ const Stats = () => {
     setLoading(true);
     setTextarea(false);
     try {
+      const id = `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
       // 실제 요청을 사용할 때 주석을 해제하세요.
       // const response = await fetch("http://localhost:3000/api/generate", {
       //   method: "POST",
@@ -55,23 +56,22 @@ const Stats = () => {
 
       // 여기는 예시로 2초 동안 기다리는 코드입니다.
       await new Promise(resolve => setTimeout(resolve, 2000));
-
-      // 글로벌 변수 adminWindow를 통해 메시지 전송
       if (!window.adminWindow || window.adminWindow.closed) {
         window.adminWindow = window.open("/LLMfront/admin.html", "_blank");
         window.adminWindow.onload = () => {
           window.adminWindow.postMessage({
+            id,
             boxContent: "New Box",
             className: 'new-box'
           }, 'http://localhost:5173/LLMfront/admin.html');
         };
       } else {
         window.adminWindow.postMessage({
+          id,
           boxContent: "New Box",
           className: 'new-box'
         }, 'http://localhost:5173/LLMfront/admin.html');
       }
-
       setToast({ show: true, message: "생성이 완료되었습니다.", type: "success" }); 
     } catch (error) {
       console.error(error);
@@ -80,7 +80,6 @@ const Stats = () => {
       setLoading(false);
     }
   };
-
   const closeToast = () => {
     setToast({ show: false, message: "", type: "" });
   };
