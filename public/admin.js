@@ -1,15 +1,22 @@
-async function checkBotStatus() {
-  try {
-    const response = await fetch("#");
-    if (!response.ok) {
-      throw new Error("Failed to fetch bot status");
+document.addEventListener("DOMContentLoaded", () => {
+  const addBoxToBotDiv = (boxContent, className) => {
+    const botDiv = document.querySelector(".Bot");
+    if (botDiv) {
+      const newBox = document.createElement("div");
+      newBox.textContent = boxContent;
+      if (className) {
+        newBox.className = className;
+      }
+      botDiv.appendChild(newBox);
     }
-    const data = await response.json();
-    document.getElementById("bot-status").textContent = data.status;
-  } catch (error) {
-    console.error("Error fetching bot status:", error);
-    document.getElementById("bot-status").textContent = "Error";
-  }
-}
+  };
 
-checkBotStatus();
+  window.addEventListener("message", (event) => {
+    if (event.origin === "http://localhost:5173") {
+      const { boxContent, className } = event.data;
+      if (boxContent) {
+        addBoxToBotDiv(boxContent, className);
+      }
+    }
+  });
+});

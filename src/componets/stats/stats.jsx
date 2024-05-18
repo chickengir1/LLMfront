@@ -55,10 +55,21 @@ const Stats = () => {
 
       // 여기는 예시로 2초 동안 기다리는 코드입니다.
       await new Promise(resolve => setTimeout(resolve, 2000));
-      setToast({ show: true, message: "생성이 완료되었습니다.", type: "success" }); // 성공 알림
+
+      const adminWindow = window.open("http://localhost:5173/LLMfront/admin.html");
+      if (adminWindow) {
+        adminWindow.onload = () => {
+          adminWindow.postMessage({
+            boxContent: "New Box",
+            className: 'new-box'
+          }, 'http://localhost:5173');
+        };
+      }
+
+      setToast({ show: true, message: "생성이 완료되었습니다.", type: "success" }); 
     } catch (error) {
       console.error(error);
-      setToast({ show: true, message: "생성 중 오류가 발생했습니다.", type: "error" }); // 오류 알림
+      setToast({ show: true, message: "생성 중 오류가 발생했습니다.", type: "error" }); 
     } finally {
       setLoading(false);
     }
