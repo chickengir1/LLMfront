@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Toast from "../toast/Toast";
 import "./stats.css";
 
@@ -33,51 +33,16 @@ const Stats = () => {
         currentIndex = parseInt(currentIndex, 10) + 1;
       }
       localStorage.setItem('currentIndex', currentIndex);
+
       const id = `box-${currentIndex}`;
+      const newBox = { id, inputValue };
 
-      // 실제 요청을 사용할 때 주석을 해제하세요.
-      // const response = await fetch("http://localhost:3000/api/generate", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({ inputValue }),
-      // });
+      localStorage.setItem(id, JSON.stringify(newBox));
 
-      // if (!response.ok) {
-      //   throw new Error("Error");
-      // }
-
-      // const data = await response.json();
-      // console.log(data);
-
-      // 여기는 예시로 2초 동안 기다리는 코드입니다.
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      const allowedOrigins = ["http://localhost:5173", "https://chickengir1.github.io/LLMfront/"];
-      if (!window.adminWindow || window.adminWindow.closed) {
-        window.adminWindow = window.open("/LLMfront/admin.html", "_blank");
-        window.adminWindow.onload = () => {
-          allowedOrigins.forEach(origin => {
-            window.adminWindow.postMessage({
-              id,
-              boxContent: "New Box",
-              className: 'new-box'
-            }, origin);
-          });
-        };
-      } else {
-        allowedOrigins.forEach(origin => {
-          window.adminWindow.postMessage({
-            id,
-            boxContent: "New Box",
-            className: 'new-box'
-          }, origin);
-        });
-      }
-      setToast({ show: true, message: "생성이 완료되었습니다.", type: "success" }); 
+      setToast({ show: true, message: "생성이 완료되었습니다.", type: "success" });
     } catch (error) {
       console.error(error);
-      setToast({ show: true, message: "생성 중 오류가 발생했습니다.", type: "error" }); 
+      setToast({ show: true, message: "생성 중 오류가 발생했습니다.", type: "error" });
     } finally {
       setLoading(false);
     }
