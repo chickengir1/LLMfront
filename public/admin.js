@@ -4,23 +4,21 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((response) => response.json())
       .then((data) => {
         data.forEach((item) => {
-          addBoxToBotDiv(
-            item.id,
-            item.title,
-            item.inputValue,
-            "new-box",
-            false
-          );
+          const id = item.id || "";
+          const title = item.title || "";
+          const inputValue = item.inputValue || "";
+
+          addBoxToBotDiv(id, title, inputValue, "new-box");
         });
       })
       .catch((error) => console.error("Error loading boxes from JSON:", error));
   };
 
-  const addBoxToBotDiv = (id, title, inputValue, className) => {
+  const addBoxToBotDiv = (id, title, content, className) => {
     const botDiv = document.querySelector(".Bot");
     if (botDiv) {
       const newBox = document.createElement("div");
-      newBox.innerHTML = `<strong>${title}</strong><p>${inputValue}</p>`;
+      newBox.innerHTML = `<strong>${title}</strong><p>${content}</p>`;
       if (className) {
         newBox.className = className;
       }
