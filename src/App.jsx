@@ -34,9 +34,12 @@ const App = () => {
 
   return (
     <div>
+      <div className="apptop"></div>
       <Navbar />
       <Home />
+      <div className="featuretop"></div>
       <Features />
+      <div className="generate"></div>
       <Stats />
       <Footer />
       <img

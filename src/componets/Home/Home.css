@@ -1,3 +1,6 @@
+.homesection{
+  background-color: #333;
+}
 .content {
   height: 100vh;
   width: 80vw;
@@ -6,6 +9,7 @@
   justify-content: center;
   position: relative;
   margin: auto;
+  background-color: #333;
   }
 
   .text {
@@ -49,8 +53,8 @@
   }
 
   .Animation {
-    background: white;
-    height: 50vh;
+    background-color: #333;
+    
   }
 
   .downScroll {

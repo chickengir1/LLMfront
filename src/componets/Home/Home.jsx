@@ -15,7 +15,7 @@ const Scroll = (e) => {
 
 const Home = () => {
   return (
-    <div>
+    <div className='homesection'>
     <div className="home">
       <div className="content">
         <div className="text">

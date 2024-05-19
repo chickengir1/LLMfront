@@ -28,6 +28,7 @@ const Navbar = () => {
 
 
   return (
+    <div className="nav">
     <div className="navbar">
       <a href="#" className="logo">
         Logo
@@ -46,6 +47,7 @@ const Navbar = () => {
       <div className="manage-btn">
         <button onClick={openAdminPage}>Manage Server</button>
       </div>
+    </div>
     </div>
   );
 };

@@ -1,9 +1,25 @@
 * {
     margin: 0;
     padding: 0;
-    background-color: #333;
     font-family: 'Poppins', sans-serif;
 }
+.apptop{
+    width: 100%;
+    height: 50px;
+    background-color: #333;
+}
+.generate {
+    background-color: #333;
+    width: 100%;
+    height: 5rem;
+    margin-top: -10px;
+  }
+  .featuretop{
+    background-color: #fff;
+    margin-top: -20px;
+    width: 100%;
+    height: 5rem;
+  }
 
 .scrollToTop{
     object-fit: cover;
