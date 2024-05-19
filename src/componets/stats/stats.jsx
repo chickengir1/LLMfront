@@ -53,21 +53,26 @@ const Stats = () => {
 
       // 여기는 예시로 2초 동안 기다리는 코드입니다.
       await new Promise(resolve => setTimeout(resolve, 2000));
+      const allowedOrigins = ["http://localhost:5173", "https://chickengir1.github.io/LLMfront/"];
       if (!window.adminWindow || window.adminWindow.closed) {
         window.adminWindow = window.open("/LLMfront/admin.html", "_blank");
         window.adminWindow.onload = () => {
+          allowedOrigins.forEach(origin => {
+            window.adminWindow.postMessage({
+              id,
+              boxContent: "New Box",
+              className: 'new-box'
+            }, origin);
+          });
+        };
+      } else {
+        allowedOrigins.forEach(origin => {
           window.adminWindow.postMessage({
             id,
             boxContent: "New Box",
             className: 'new-box'
-          }, 'http://localhost:5173/LLMfront/admin.html');
-        };
-      } else {
-        window.adminWindow.postMessage({
-          id,
-          boxContent: "New Box",
-          className: 'new-box'
-        }, 'http://localhost:5173/LLMfront/admin.html');
+          }, origin);
+        });
       }
       setToast({ show: true, message: "생성이 완료되었습니다.", type: "success" }); 
     } catch (error) {

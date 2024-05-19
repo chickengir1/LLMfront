@@ -51,8 +51,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const allowedOrigins = [
+    "http://localhost:5173",
+    "https://chickengir1.github.io/LLMfront/",
+  ];
+
   window.addEventListener("message", (event) => {
-    if (event.origin === "http://localhost:5173") {
+    if (allowedOrigins.includes(event.origin)) {
       const { id, boxContent, className } = event.data;
       if (boxContent) {
         addBoxToBotDiv(id, boxContent, className);
