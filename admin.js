@@ -1,15 +1,57 @@
-async function checkBotStatus() {
-  try {
-    const response = await fetch("#");
-    if (!response.ok) {
-      throw new Error("Failed to fetch bot status");
-    }
-    const data = await response.json();
-    document.getElementById("bot-status").textContent = data.status;
-  } catch (error) {
-    console.error("Error fetching bot status:", error);
-    document.getElementById("bot-status").textContent = "Error";
-  }
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const generateUniqueId = () => {
+    return `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+  };
 
-checkBotStatus();
+  const loadBoxesFromLocalStorage = () => {
+    const keys = Object.keys(localStorage).filter((key) =>
+      key.startsWith("box-")
+    );
+    keys.forEach((key) => {
+      const { id, boxContent, className } = JSON.parse(
+        localStorage.getItem(key)
+      );
+      addBoxToBotDiv(id, boxContent, className, false);
+    });
+  };
+
+  const saveBoxToLocalStorage = (id, boxContent, className) => {
+    const key = `box-${id}`;
+    const boxData = { id, boxContent, className };
+    localStorage.setItem(key, JSON.stringify(boxData));
+  };
+
+  const addBoxToBotDiv = (
+    id,
+    boxContent,
+    className,
+    saveToLocalStorage = true
+  ) => {
+    console.log("saveToLocalStorage:", saveToLocalStorage); // Boolean 매개변수 확인
+
+    const botDiv = document.querySelector(".Bot");
+    if (botDiv) {
+      const newBox = document.createElement("div");
+      newBox.textContent = boxContent;
+      if (className) {
+        newBox.className = className;
+      }
+      newBox.id = id;
+      botDiv.appendChild(newBox);
+      if (saveToLocalStorage) {
+        saveBoxToLocalStorage(id, boxContent, className);
+      }
+    }
+  };
+
+  window.addEventListener("message", (event) => {
+    if (event.origin === "http://localhost:5173") {
+      const { id, boxContent, className } = event.data;
+      if (boxContent) {
+        addBoxToBotDiv(id, boxContent, className);
+      }
+    }
+  });
+
+  loadBoxesFromLocalStorage();
+});
