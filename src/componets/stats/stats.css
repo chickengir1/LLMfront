@@ -56,11 +56,20 @@
     flex-direction: column;
     margin-top: 20px;
 }
+.area {
+  display: flex;
+  flex-direction: column;
+}
 .input{
     resize: none;
     background: #fff;
-    width: 80vw;
-    height: 50vw;
+    font-size: 14px;
+    padding: 12px;
+    margin-bottom: 5px;
+}
+
+.inputtitle{
+    background: #fff;
     font-size: 14px;
     padding: 12px;
     margin-bottom: 5px;

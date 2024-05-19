@@ -4,40 +4,53 @@ import "./stats.css";
 
 const Stats = () => {
   const [textarea, setTextarea] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
 
   const ClickEvent = () => {
     setTextarea(true);
-    setInputValue("");
+    setTitle("");
+    setContent("");
   };
 
   const CancelEvent = () => {
     setTextarea(false);
-    setInputValue("");
+    setTitle("");
+    setContent("");
   };
 
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const handleContentChange = (event) => {
+    setContent(event.target.value);
   };
 
   const AiGenerate = async () => {
     setLoading(true);
     setTextarea(false);
     try {
-      let currentIndex = localStorage.getItem('currentIndex');
-      if (!currentIndex) {
-        currentIndex = 1;
-      } else {
-        currentIndex = parseInt(currentIndex, 10) + 1;
-      }
-      localStorage.setItem('currentIndex', currentIndex);
+      const response = await fetch('/LLMfront/db.json');
+      const data = await response.json();
+      const currentIndex = data.length + 1;
 
       const id = `box-${currentIndex}`;
-      const newBox = { id, inputValue };
+      const newBox = { id, title, inputValue };
 
-      localStorage.setItem(id, JSON.stringify(newBox));
+      const saveResponse = await fetch('http://localhost:3001/api/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newBox),
+      });
+
+      if (!saveResponse.ok) {
+        throw new Error('Failed to save data');
+      }
 
       setToast({ show: true, message: "생성이 완료되었습니다.", type: "success" });
     } catch (error) {
@@ -67,15 +80,24 @@ const Stats = () => {
         </div>
         {textarea && (
           <div className="textarea">
+            <div className="area">
+            <input
+              className="inputtitle"
+              placeholder="제목을 입력하세요..."
+              style={{ width: "14vw", height: "20px", marginBottom: "15px" }}
+              value={title}
+              onChange={handleTitleChange}
+            />
             <textarea
               className="input"
-              placeholder="입력하세요..."
+              placeholder="내용을 입력하세요..."
               style={{ width: "30vw", height: "100px" }}
-              value={inputValue}
-              onChange={handleChange}
+              value={content}
+              onChange={handleContentChange}
             />
+            </div>
             <div className="row">
-              <button className="submit" onClick={AiGenerate} disabled={inputValue.trim() === ""}>
+              <button className="submit" onClick={AiGenerate} disabled={title.trim() === "" || content.trim() === ""}>
                 Generate
               </button>
               <button className="cancel" onClick={CancelEvent}>
@@ -84,7 +106,7 @@ const Stats = () => {
             </div>
           </div>
         )}
-        {loading &&
+        {loading && (
           <div className="loading">
             <div className="spinner">
               <div></div>
@@ -92,7 +114,7 @@ const Stats = () => {
               <div></div>
             </div>
           </div>
-        }
+        )}
       </div>
       {toast.show && (
         <Toast

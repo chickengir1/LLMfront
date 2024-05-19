@@ -15,7 +15,7 @@
     transition: opacity 0.5s ease-in-out;
     overflow: hidden;
     position: relative;
-    width: 250px; 
+    width: 300px; 
   }
   
   .custom-toast.success {

@@ -1,37 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const loadBoxesFromLocalStorage = () => {
-    const keys = Object.keys(localStorage).filter((key) =>
-      key.startsWith("box-")
-    );
-    keys.forEach((key) => {
-      const { id, inputValue } = JSON.parse(localStorage.getItem(key));
-      addBoxToBotDiv(id, inputValue, "new-box", false);
-    });
+  const loadBoxesFromJson = () => {
+    fetch("/LLMfront/db.json")
+      .then((response) => response.json())
+      .then((data) => {
+        data.forEach((item) => {
+          addBoxToBotDiv(
+            item.id,
+            item.title,
+            item.inputValue,
+            "new-box",
+            false
+          );
+        });
+      })
+      .catch((error) => console.error("Error loading boxes from JSON:", error));
   };
 
-  const addBoxToBotDiv = (
-    id,
-    boxContent,
-    className,
-    saveToLocalStorage = true
-  ) => {
+  const addBoxToBotDiv = (id, title, inputValue, className) => {
     const botDiv = document.querySelector(".Bot");
     if (botDiv) {
       const newBox = document.createElement("div");
-      newBox.textContent = boxContent;
+      newBox.innerHTML = `<strong>${title}</strong><p>${inputValue}</p>`;
       if (className) {
         newBox.className = className;
       }
       newBox.id = id;
       botDiv.appendChild(newBox);
-      if (saveToLocalStorage) {
-        localStorage.setItem(
-          id,
-          JSON.stringify({ id, inputValue: boxContent, className })
-        );
-      }
     }
   };
 
-  loadBoxesFromLocalStorage();
+  loadBoxesFromJson();
 });
