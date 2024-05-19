@@ -41,6 +41,7 @@ const App = () => {
       <Features />
       <div className="generate"></div>
       <Stats />
+      <div className="generate"></div>
       <Footer />
       <img
         src={ScrollImg}

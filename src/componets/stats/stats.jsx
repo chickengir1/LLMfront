@@ -8,17 +8,6 @@ const Stats = () => {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
 
-  useEffect(() => {
-    if (loading) {
-      document.body.style.overflow = 'hidden'; 
-    } else {
-      document.body.style.overflow = 'auto'; 
-    }
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [loading]);
-
   const ClickEvent = () => {
     setTextarea(true);
     setInputValue("");
@@ -37,7 +26,15 @@ const Stats = () => {
     setLoading(true);
     setTextarea(false);
     try {
-      const id = `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+      let currentIndex = localStorage.getItem('currentIndex');
+      if (!currentIndex) {
+        currentIndex = 1;
+      } else {
+        currentIndex = parseInt(currentIndex, 10) + 1;
+      }
+      localStorage.setItem('currentIndex', currentIndex);
+      const id = `box-${currentIndex}`;
+
       // 실제 요청을 사용할 때 주석을 해제하세요.
       // const response = await fetch("http://localhost:3000/api/generate", {
       //   method: "POST",
@@ -80,6 +77,7 @@ const Stats = () => {
       setLoading(false);
     }
   };
+
   const closeToast = () => {
     setToast({ show: false, message: "", type: "" });
   };

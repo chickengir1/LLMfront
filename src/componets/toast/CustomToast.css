@@ -1,5 +1,6 @@
 .custom-toast {
     position: fixed !important;
+    transform: translate(-0%,0%);
     bottom: 20px;
     left: 20px;
     background-color: #fff;

@@ -1,6 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const generateUniqueId = () => {
-    return `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+    let currentIndex = localStorage.getItem("currentIndex");
+    if (!currentIndex) {
+      currentIndex = 1;
+    } else {
+      currentIndex = parseInt(currentIndex, 10) + 1;
+    }
+    localStorage.setItem("currentIndex", currentIndex);
+    return currentIndex;
   };
 
   const loadBoxesFromLocalStorage = () => {
@@ -27,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     className,
     saveToLocalStorage = true
   ) => {
-    console.log("saveToLocalStorage:", saveToLocalStorage); // Boolean 매개변수 확인
+    console.log("saveToLocalStorage:", saveToLocalStorage);
 
     const botDiv = document.querySelector(".Bot");
     if (botDiv) {
