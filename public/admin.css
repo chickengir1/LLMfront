@@ -119,6 +119,11 @@ button {
 }
 
 .pagination button {
+  width: 5rem;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
   padding: 10px 20px;
   margin: 0 5px;
   border: 1px solid #ccc;
