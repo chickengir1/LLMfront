@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
@@ -12,7 +12,7 @@ body {
 }
 
 .navbar {
-  padding: 3rem 6rem;
+  padding: 1rem 6rem;
   width: 80vw;
   display: flex;
   justify-content: space-between;
@@ -25,14 +25,16 @@ body {
   padding: 14px 24px;
   border: 1px solid black;
   background-color: #7289DA;
-  border-radius: 5px;
+  border-radius: 0.5rem;
+  margin-bottom: -2rem;
+  margin-left: -4rem;
 }
 
 main {
-   display: flex;
-   justify-content: center;
-   flex-direction: column; 
-   align-items: center; 
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 h2 {
@@ -44,25 +46,94 @@ h2 {
 
 .Bot {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  width: 80vw;
+  align-items: center;
+  width: 95vw;
   height: 80vh;
-  background-color:#556b2f;
+  background-color: white;
   border: 1px solid black;
-  border-radius: 5rem;
-}
-.footer {
-  background-color: #333;
-  width: 100vw;
-  height: 20vh;
+  border-radius: 1rem;
 }
 
 .new-box {
+  display: flex;
+  flex-direction: row;
+  position: relative;
   border: 1px solid #ccc;
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
   background-color: #f9f9f9;
-  width: 100px;
+  width: 95%;
   height: 100px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.new-box > strong {
+  color: #fff;
+  background-color: #7289DA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 15rem;
+  padding: 5px;
+  box-sizing: border-box;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 1px solid black;
+  overflow: hidden; 
+  white-space: nowrap;
+}
+
+.new-box > p {
+  flex: 1;
+  font-weight: bolder;
+  padding-left: 1.5rem; 
+  overflow: hidden; 
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+}
+button {
+  width: 100%;
+  height: 2rem;
+  margin-bottom: 5px;
+  position: relative;
+  border-radius: 5px;
+}
+
+.footer {
+  background-color: #333;
+  width: 100vw;
+  height: 5rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  color: white
+}
+
+.pagination button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  background-color: #7289da;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination #pageNumber {
+  font-size: 1.2em;
+  margin: 0 10px;
 }
