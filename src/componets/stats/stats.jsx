@@ -37,10 +37,10 @@ const Stats = () => {
       const data = await response.json();
       const currentIndex = data.length + 1;
 
-      const id = `box-${currentIndex}`;
-      const newBox = { id, title, inputValue };
+      const id = `${currentIndex}`;
+      const newBox = { id, title, content };
 
-      const saveResponse = await fetch('http://localhost:3001/api/save', {
+      const saveResponse = await fetch('/api/save', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

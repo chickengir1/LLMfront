@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
       itemsToDisplay.forEach((item) => {
         const id = item.id || "";
         const title = item.title || "";
-        const inputValue = item.inputValue || "";
+        const content = item.content || "";
 
-        addBoxToBotDiv(id, title, inputValue, "new-box");
+        addBoxToBotDiv(id, title, content, "new-box");
       });
 
       document.getElementById("pageNumber").textContent = page;
