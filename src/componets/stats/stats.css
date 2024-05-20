@@ -69,11 +69,12 @@
 }
 
 .inputtitle{
-    height: 0rem !important;
-    background: #fff;
-    font-size: 14px;
-    padding: 12px;
-    margin-bottom: 4px !important;
+  width: 13.5rem !important;
+  height: 0rem !important;
+  background: #fff;
+  font-size: 14px;
+  padding: 12px;
+  margin-bottom: 4px !important;
 }
 
 .cancel{
