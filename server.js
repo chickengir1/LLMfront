@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const dbPath = path.join(__dirname, "public", "db.json");
 
 app.use(bodyParser.json());
@@ -42,5 +42,5 @@ app.post("/api/save", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(` http://localhost:${PORT}에서 서버가 실행중입니다.`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
