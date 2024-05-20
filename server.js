@@ -13,7 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const dbPath = path.join(__dirname, "public", "db.json");
 
-app.use(cors()); // 모든 출처에서의 요청을 허용합니다.
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
