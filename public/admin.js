@@ -111,6 +111,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const deleteBox = async (id) => {
+    const confirmation = confirm("Are you sure you want to delete this item?");
+    if (confirmation) {
+      try {
+        const response = await fetch(`http://localhost:3000/api/delete/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          console.log("Data deleted successfully");
+          document.getElementById(id).remove();
+        } else {
+          console.error("Error deleting data");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  };
+
   document.getElementById("prevPage").addEventListener("click", () => {
     if (currentPage > 1) {
       currentPage--;
