@@ -1,36 +1,17 @@
-
 [
-    {
-      "id": "1",
-      "title" : "주식 차트 생성 봇",
-      "inputValue": "Sample data 1"
-    },
-    {
-      "id": "2",
-      "title" : "제목2",
-      "inputValue": "Sample data 2"
-    },
-    {
-      "id": "3",
-      "title" : "제목3",
-      "inputValue": "Sample data 3"
-    },
-    {
-      "id": "4",
-      "title" : "제목4",
-      "inputValue": "Sample data 4"
-    },    {
-      "id": "5",
-      "title" : "제목5",
-      "inputValue": "Sample data 5"
-    },    {
-      "id": "6",
-      "title" : "제목6",
-      "inputValue": "Sample data 6"
-    },    {
-      "id": "7",
-      "title" : "제목7",
-      "inputValue": "Sample data 7"
-    }
-  ]
-  
+  {
+    "id": "1",
+    "title": "test",
+    "content": "test"
+  },
+  {
+    "id": "2",
+    "title": "test2",
+    "content": "test2"
+  },
+  {
+    "id": "3",
+    "title": "123",
+    "content": "123"
+  }
+]
