@@ -6,6 +6,7 @@ const Stats = () => {
   const [textarea, setTextarea] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [links, setLinks] = useState([""]);
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
 
@@ -13,12 +14,14 @@ const Stats = () => {
     setTextarea(true);
     setTitle("");
     setContent("");
+    setLinks([""]);
   };
 
   const CancelEvent = () => {
     setTextarea(false);
     setTitle("");
     setContent("");
+    setLinks([""]);
   };
 
   const handleTitleChange = (event) => {
@@ -27,6 +30,21 @@ const Stats = () => {
 
   const handleContentChange = (event) => {
     setContent(event.target.value);
+  };
+
+  const handleLinkChange = (index, event) => {
+    const newLinks = [...links];
+    newLinks[index] = event.target.value;
+    setLinks(newLinks);
+  };
+
+  const addLinkField = () => {
+    setLinks([...links, ""]);
+  };
+
+  const removeLinkField = (index) => {
+    const newLinks = links.filter((_, i) => i !== index);
+    setLinks(newLinks);
   };
 
   const AiGenerate = async () => {
@@ -44,7 +62,7 @@ const Stats = () => {
         const currentIndex = data.length + 1;
   
         const id = `${currentIndex}`;
-        const newBox = { id, title, content };
+        const newBox = { id, title, content, links };
   
         const saveResponse = await fetch('/api/save', {
           method: 'POST',
@@ -67,7 +85,6 @@ const Stats = () => {
       setLoading(false);
     }
   };
-  
 
   const closeToast = () => {
     setToast({ show: false, message: "", type: "" });
@@ -103,6 +120,18 @@ const Stats = () => {
               value={content}
               onChange={handleContentChange}
             />
+            {links.map((link, index) => (
+              <div key={index} className="link-input">
+                <input
+                  type="text"
+                  placeholder="링크를 입력하세요..."
+                  value={link}
+                  onChange={(e) => handleLinkChange(index, e)}
+                />
+                <button onClick={addLinkField}>+</button>
+                <button onClick={() => removeLinkField(index)}>-</button>
+              </div>
+            ))}
             </div>
             <div className="row">
               <button className="submit" onClick={AiGenerate} disabled={title.trim() === "" || content.trim() === ""}>
