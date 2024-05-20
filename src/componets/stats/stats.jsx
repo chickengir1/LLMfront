@@ -37,7 +37,7 @@ const Stats = () => {
 
   const AiGenerate = async () => {
     setLoading(true);
-    handleTextareaToggle();
+    handleTextareaToggle(true);
 
     try {
       const response = await fetch('/LLMfront/db.json');
