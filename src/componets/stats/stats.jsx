@@ -33,33 +33,41 @@ const Stats = () => {
     setLoading(true);
     setTextarea(false);
     try {
-      const response = await fetch('/LLMfront/db.json');
-      const data = await response.json();
-      const currentIndex = data.length + 1;
-
-      const id = `${currentIndex}`;
-      const newBox = { id, title, content };
-
-      const saveResponse = await fetch('/api/save', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newBox),
-      });
-
-      if (!saveResponse.ok) {
-        throw new Error('Failed to save data');
-      }
-
-      setToast({ show: true, message: "생성이 완료되었습니다.", type: "success" });
+      setTimeout(async () => {
+        const response = await fetch('/LLMfront/db.json');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        
+        const data = await response.json();
+        const currentIndex = data.length + 1;
+  
+        const id = `${currentIndex}`;
+        const newBox = { id, title, content };
+  
+        const saveResponse = await fetch('/api/save', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newBox),
+        });
+  
+        if (!saveResponse.ok) {
+          throw new Error('Failed to save data');
+        }
+  
+        setToast({ show: true, message: "생성이 완료되었습니다.", type: "success" });
+        setLoading(false);
+      }, 2000);
     } catch (error) {
       console.error(error);
       setToast({ show: true, message: "생성 중 오류가 발생했습니다.", type: "error" });
-    } finally {
       setLoading(false);
     }
   };
+  
 
   const closeToast = () => {
     setToast({ show: false, message: "", type: "" });
