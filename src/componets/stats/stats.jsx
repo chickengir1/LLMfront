@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Toast from "../toast/Toast";
 import "./stats.css";
 
+
 const Stats = () => {
   const [textarea, setTextarea] = useState(false);
   const [title, setTitle] = useState("");
@@ -61,7 +62,7 @@ const Stats = () => {
         const data = await response.json();
         const currentIndex = data.length + 1;
   
-        const id = `${currentIndex}`;
+        const id = currentIndex; 
         const newBox = { id, title, content, links };
   
         const saveResponse = await fetch('/api/save', {
