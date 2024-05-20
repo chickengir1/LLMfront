@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
   loadBoxesFromJson(currentPage);
 });
 
-// 임시 코드임
 const editBox = (id) => {
   const box = document.getElementById(id);
   const title = prompt(
@@ -87,5 +86,23 @@ const editBox = (id) => {
   if (title !== null && content !== null) {
     box.querySelector("strong").innerText = title;
     box.querySelector("p").innerText = content;
+
+    fetch(`http://localhost:3000/api/update/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, content }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Data updated successfully");
+        } else {
+          console.error("Error updating data");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   }
 };
