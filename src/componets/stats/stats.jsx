@@ -61,8 +61,11 @@ const Stats = () => {
         
         const data = await response.json();
         const currentIndex = data.length + 1;
-  
-        const id = currentIndex; 
+        
+        const id = `${currentIndex}`; 
+
+        // id값 정수로 저장시 문제 발생
+        // const id = currentIndex; 
         const newBox = { id, title, content, links };
   
         const saveResponse = await fetch('/api/save', {
