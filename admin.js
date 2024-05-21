@@ -135,18 +135,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const changePage = (direction) => {
+    currentPage += direction;
+    loadBoxesFromJson();
+  };
+
   document.getElementById("prevPage").addEventListener("click", () => {
-    if (currentPage > 1) {
-      currentPage--;
-      loadBoxesFromJson();
-    }
+    if (currentPage > 1) changePage(-1);
   });
 
   document.getElementById("nextPage").addEventListener("click", () => {
-    if ((currentPage - 1) * itemsPerPage + itemsPerPage < totalItems) {
-      currentPage++;
-      loadBoxesFromJson();
-    }
+    if ((currentPage - 1) * itemsPerPage + itemsPerPage < totalItems)
+      changePage(1);
   });
 
   loadBoxesFromJson();
