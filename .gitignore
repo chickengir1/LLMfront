@@ -72,5 +72,4 @@ locale/*
 
 dist
 
-public/db.json
-.vercel
+
