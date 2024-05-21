@@ -46,9 +46,8 @@ const Stats = () => {
       const data = await response.json();
 
 
-       //const id = data.length + 1;
-       // id 값 정수로 전달시 반영 안됨 해결 못함 아직
-      const id = `${data.length + 1}`;
+       const id = data.length + 1;
+      // const id = `${data.length + 1}`;
       const newBox = { id, title, content, links };
 
       const saveResponse = await fetch('/api/save', {
