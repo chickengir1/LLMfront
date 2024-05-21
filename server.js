@@ -1,51 +1,39 @@
 import express from "express";
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
-import bodyParser from "body-parser";
 import { fileURLToPath } from "url";
-import { dirname } from "path";
 import cors from "cors";
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DB_PATH = path.join(__dirname, "public", "db.json");
 
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-const readJsonFile = (filePath) => {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filePath, "utf8", (err, data) => {
-      if (err) {
-        return reject("Error reading db.json");
-      }
-      try {
-        const jsonData = JSON.parse(data);
-        resolve(jsonData);
-      } catch (parseErr) {
-        reject("Error parsing db.json");
-      }
-    });
-  });
+const readJsonFile = async (filePath) => {
+  try {
+    const data = await fs.readFile(filePath, "utf8");
+    return JSON.parse(data);
+  } catch (err) {
+    throw new Error("Error reading db.json");
+  }
 };
 
-const writeJsonFile = (filePath, data) => {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(filePath, JSON.stringify(data, null, 2), (err) => {
-      if (err) {
-        return reject("Error writing to db.json");
-      }
-      resolve();
-    });
-  });
+const writeJsonFile = async (filePath, data) => {
+  try {
+    await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+  } catch (err) {
+    throw new Error("Error writing to db.json");
+  }
 };
 
 const errorHandler = (res, message, statusCode = 500) => {
-  res.status(statusCode).send(message);
+  res.status(statusCode).send({ error: message });
 };
 
 app.post("/api/save", async (req, res) => {
@@ -54,9 +42,9 @@ app.post("/api/save", async (req, res) => {
     const jsonData = await readJsonFile(DB_PATH);
     jsonData.push(newBox);
     await writeJsonFile(DB_PATH, jsonData);
-    res.status(200).send("Data saved successfully");
+    res.status(200).send({ message: "Data saved successfully" });
   } catch (error) {
-    errorHandler(res, error);
+    errorHandler(res, error.message);
   }
 });
 
@@ -73,9 +61,9 @@ app.put("/api/update/:id", async (req, res) => {
 
     jsonData[index] = { ...jsonData[index], ...updatedBox };
     await writeJsonFile(DB_PATH, jsonData);
-    res.status(200).send("Data updated successfully");
+    res.status(200).send({ message: "Data updated successfully" });
   } catch (error) {
-    errorHandler(res, error);
+    errorHandler(res, error.message);
   }
 });
 
@@ -91,9 +79,9 @@ app.delete("/api/delete/:id", async (req, res) => {
 
     jsonData.splice(index, 1);
     await writeJsonFile(DB_PATH, jsonData);
-    res.status(200).send("Data deleted successfully");
+    res.status(200).send({ message: "Data deleted successfully" });
   } catch (error) {
-    errorHandler(res, error);
+    errorHandler(res, error.message);
   }
 });
 

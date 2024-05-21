@@ -17,10 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("pageNumber").textContent = page;
   };
 
-  const toggleButtonState = (page, totalItems, itemsPerPage) => {
-    document.getElementById("prevPage").disabled = page === 1;
-    document.getElementById("nextPage").disabled =
-      page * itemsPerPage >= totalItems;
+  const toggleButtonState = () => {
+    const prevButton = document.getElementById("prevPage");
+    const nextButton = document.getElementById("nextPage");
+    prevButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage * itemsPerPage >= totalItems;
   };
 
   const clearBotDiv = () => {
@@ -55,8 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .addEventListener("click", () => deleteBox(id));
   };
 
-  const renderBoxes = (data, page, itemsPerPage) => {
-    const startIndex = (page - 1) * itemsPerPage;
+  const renderBoxes = (data) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const itemsToDisplay = data.slice(startIndex, endIndex);
 
@@ -68,12 +69,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  const loadBoxesFromJson = async (page) => {
+  const loadBoxesFromJson = async () => {
     const data = await fetchData("/LLMfront/db.json");
     totalItems = data.length;
-    renderBoxes(data, page, itemsPerPage);
-    updatePageNumber(page);
-    toggleButtonState(page, totalItems, itemsPerPage);
+    renderBoxes(data);
+    updatePageNumber(currentPage);
+    toggleButtonState();
   };
 
   const editBox = async (id) => {
@@ -137,16 +138,16 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("prevPage").addEventListener("click", () => {
     if (currentPage > 1) {
       currentPage--;
-      loadBoxesFromJson(currentPage);
+      loadBoxesFromJson();
     }
   });
 
   document.getElementById("nextPage").addEventListener("click", () => {
     if ((currentPage - 1) * itemsPerPage + itemsPerPage < totalItems) {
       currentPage++;
-      loadBoxesFromJson(currentPage);
+      loadBoxesFromJson();
     }
   });
 
-  loadBoxesFromJson(currentPage);
+  loadBoxesFromJson();
 });
