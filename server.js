@@ -49,7 +49,7 @@ app.post("/api/save", async (req, res) => {
 });
 
 app.put("/api/update/:id", async (req, res) => {
-  const id = parseInt(req.params.id, 10);
+  const id = req.params.id;
   const updatedBox = req.body;
 
   try {
@@ -68,7 +68,7 @@ app.put("/api/update/:id", async (req, res) => {
 });
 
 app.delete("/api/delete/:id", async (req, res) => {
-  const id = parseInt(req.params.id, 10);
+  const id = req.params.id;
 
   try {
     const jsonData = await readJsonFile(DB_PATH);
