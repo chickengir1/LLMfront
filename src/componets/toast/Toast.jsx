@@ -2,24 +2,23 @@ import React, { useEffect, useState } from 'react';
 import './CustomToast.css';
 
 const Toast = ({ message, type, onClose }) => {
-  const [hide, setHide] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setHide(true);
-      setTimeout(() => {
-        onClose();
-      }, 500); 
-    }, 2500); 
+    const hideTimer = setTimeout(() => setIsVisible(false), 2500);
+    const removeTimer = setTimeout(onClose, 3000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(hideTimer);
+      clearTimeout(removeTimer);
+    };
   }, [onClose]);
 
   return (
-    <div className={`custom-toast ${type} ${hide ? 'hide' : ''}`}>
+    <div className={`custom-toast ${type} ${!isVisible ? 'hide' : ''}`}>
       {message}
       <button onClick={onClose}>닫기</button>
-      <div className="progress-bar"></div> 
+      <div className="progress-bar"></div>
     </div>
   );
 };
