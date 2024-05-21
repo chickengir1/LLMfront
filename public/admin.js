@@ -79,17 +79,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const editBox = async (id) => {
     const box = document.getElementById(id);
-    const title = prompt(
-      "Enter new title:",
-      box.querySelector("strong").innerText
-    );
     const content = prompt(
       "Enter new content:",
       box.querySelector("p").innerText
     );
 
-    if (title !== null && content !== null) {
-      box.querySelector("strong").innerText = title;
+    if (content !== null) {
       box.querySelector("p").innerText = content;
 
       try {
@@ -98,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ title, content }),
+          body: JSON.stringify({ content }),
         });
 
         if (response.ok) {
