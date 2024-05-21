@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       box.querySelector("p").innerText = content;
 
       try {
-        const response = await fetch(`http://localhost:3000/api/update/${id}`, {
+        const response = await fetch(`/api/update/${id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const confirmation = confirm("Are you sure you want to delete this item?");
     if (confirmation) {
       try {
-        const response = await fetch(`http://localhost:3000/api/delete/${id}`, {
+        const response = await fetch(`/api/delete/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
