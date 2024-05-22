@@ -4,7 +4,7 @@ import Home from "../src/componets/Home/Home";
 import Features from "../src/componets/Features/Features";
 import Stats from "../src/componets/stats/stats";
 import Footer from "../src/componets/Footer/Footer";
-import ScrollImg from "../src/assets/images.png";
+import ScrollImg from "../src/assets/top.webp";
 
 const App = () => {
   const [showScrollToTop, setShowScrollToTop] = useState(false);
