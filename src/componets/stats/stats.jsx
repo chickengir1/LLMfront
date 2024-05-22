@@ -45,9 +45,7 @@ const Stats = () => {
 
       const data = await response.json();
 
-
-       const id = data.length + 1;
-      // const id = `${data.length + 1}`;
+      const id = data.length + 1;
       const newBox = { id, title, content, links };
 
       const saveResponse = await fetch('/api/save', {
@@ -71,7 +69,7 @@ const Stats = () => {
     <div>
       <div className="stats">
         <span className="text">
-          <h1 className="description">Discord Bot with Friendli LLM</h1> 사용해 볼 준비가 되셨나요?
+          <h1 className="description">DISCORD BOT WITH</h1> <h1 className="description">Friendli LLM</h1> 사용해 볼 준비가 되셨나요?
         </span>
         <div className="btnbox">
           {!textarea && (
@@ -86,29 +84,31 @@ const Stats = () => {
               <input
                 className="inputtitle"
                 placeholder="제목을 입력하세요..."
-                style={{ width: "14vw", height: "20px", marginBottom: "15px" }}
                 value={title}
                 onChange={handleChange(setTitle)}
               />
               <textarea
                 className="input"
                 placeholder="내용을 입력하세요..."
-                style={{ width: "30vw", height: "100px" }}
                 value={content}
                 onChange={handleChange(setContent)}
               />
-              {links.map((link, index) => (
-                <div key={index} className="link-input">
-                  <input
-                    type="text"
-                    placeholder="링크를 입력하세요..."
-                    value={link}
-                    onChange={handleLinkChange(index)}
-                  />
-                  <button onClick={() => handleLinkField(index, "add")}>+</button>
-                  <button onClick={() => handleLinkField(index, "remove")}>-</button>
-                </div>
-              ))}
+              <div className="inputs-container">
+                {links.map((link, index) => (
+                  <div key={index} className="link-input">
+                    <input
+                      type="text"
+                      placeholder="링크를 입력하세요..."
+                      value={link}
+                      onChange={handleLinkChange(index)}
+                    />
+                    <button onClick={() => handleLinkField(index, "add")}>+</button>
+                    {links.length > 1 && (
+                      <button onClick={() => handleLinkField(index, "remove")}>-</button>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="row">
               <button className="submit" onClick={AiGenerate} disabled={title.trim() === "" || content.trim() === ""}>
