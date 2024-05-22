@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import "./Features.css";
-import itemimg1 from "../../assets/chatbot.webp";
+import itemimg1 from "../../assets/dev1.webp";
+import itemimg2 from "../../assets/researcher.webp";
+import itemimg3 from "../../assets/game.webp";
+import itemimg4 from "../../assets/date.webp";
 
 const Features = () => {
   const [isVisible1, setIsVisible1] = useState(false);
@@ -73,7 +76,7 @@ const Features = () => {
           <div className="item4">
             <img
               ref={ref2}
-              src={itemimg1}
+              src={itemimg2}
               alt="img1"
               className={`img2 ${isVisible2 ? "visible" : ""}`}
             />
@@ -93,7 +96,7 @@ const Features = () => {
           <div className="item2">
             <img
               ref={ref3}
-              src={itemimg1}
+              src={itemimg3}
               alt="img1"
               className={`img3 ${isVisible3 ? "visible" : ""}`}
             />
@@ -113,7 +116,7 @@ const Features = () => {
           <div className="item4">
             <img
               ref={ref4}
-              src={itemimg1}
+              src={itemimg4}
               alt="img1"
               className={`img4 ${isVisible4 ? "visible" : ""}`}
             />
