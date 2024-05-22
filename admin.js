@@ -79,10 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const editBox = async (id) => {
     const box = document.getElementById(id);
-    const content = prompt(
-      "Enter new content:",
-      box.querySelector("p").innerText
-    );
+    const content = prompt("Enter new content:", "");
+    if (content !== null) {
+      box.querySelector("p").innerText = content;
+    }
 
     if (content !== null) {
       box.querySelector("p").innerText = content;
