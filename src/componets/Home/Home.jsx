@@ -19,9 +19,9 @@ const Home = () => {
     <div className="home">
       <div className="content">
         <div className="text">
-        <h1 className="h1">소개글</h1>
-        <h2 className='h2'>핵심요약핵심요약핵심요약핵심요약</h2>
-        <p className="p">여기에는 소개글이 들어갑니다여기에는 소개글이 들어갑니다여기에는 소개글이 들어갑니다여기에는 소개글이 들어갑니다.</p>
+        <h1 className="h1">Discord Bot with Friendli LLM</h1>
+        <h3 className='h2'>Discord Bot with Friendli LLM은 감성적이고 재치있는 친구 같은 봇을 제공합니다. 맞춤형 봇과 대시보드를 통해 다양한 정보를 요약하여 Discord 서버에 제공합니다.</h3>
+        <p className="p">Discord Bot with Friendli LLM을 통해 서버에 감성적이고 재치있는 친구 같은 봇을 추가하세요. OCaml로 작성된 이 봇은 FriendliAI의 Serverless Endpoint를 사용하여 RSS와 기타 정보를 요약하여 제공합니다. React.js로 작성된 대시보드를 통해 손쉽게 설정할 수 있습니다.</p>
         </div>
         <div className="banner">
           <img className='img' src={mainImg} alt="이미지 설명" />
