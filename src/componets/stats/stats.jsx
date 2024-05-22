@@ -86,6 +86,7 @@ const Stats = () => {
                 placeholder="제목을 입력하세요..."
                 value={title}
                 onChange={handleChange(setTitle)}
+                maxLength={14} 
               />
               <textarea
                 className="input"
