@@ -48,7 +48,7 @@ const Features = () => {
           <div className="item1">
             <h1>개발자 서버</h1>
             <p>
-              개발자 서버: GitHub push/merge 알림에 자체적인 요약을 제공할 수
+              GitHub push/merge 알림에 자체적인 요약을 제공할 수
               있습니다 (Webhook). 추가적으로, Text 기반의 Diagram을 그리는
               언어와 자체 구현 렌더러를 통해 Diagram을 그려줄 수 있습니다.
             </p>
