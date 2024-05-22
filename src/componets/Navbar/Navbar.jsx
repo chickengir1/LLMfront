@@ -30,8 +30,8 @@ const Navbar = () => {
   return (
     <div className="nav">
     <div className="navbar">
-      <a href="#" className="logo">
-        Logo
+      <a href="" className="logo" >
+        2TEAM
       </a>
       <div className="nav-links">
         <a href="" onClick={ReloadPage}>
