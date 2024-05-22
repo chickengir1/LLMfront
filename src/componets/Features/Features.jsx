@@ -124,7 +124,7 @@ const Features = () => {
         </section>
         {/* 박스 한개 끝 */}
       </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 300">
         <path
           fill="#333"
           fillOpacity="1"
