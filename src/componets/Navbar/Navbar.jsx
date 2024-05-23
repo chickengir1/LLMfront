@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 
+// Define constants for the URLs
+const DISCORD_AUTH_URL = "http://localhost:3000/auth/discord";
+const ADMIN_PAGE_URL = "/LLMfront/admin.html";
+const MAIN_PAGE_URL = "http://localhost:5173/LLMfront";
+
 const PageMove1 = (e) => {
   e.preventDefault();
-  const featuresSection = document.querySelector(".features");
-  featuresSection.scrollIntoView({ behavior: "smooth" });
+  document.querySelector(".features").scrollIntoView({ behavior: "smooth" });
 };
 
 const PageMove2 = (e) => {
   e.preventDefault();
-  const generateSection = document.querySelector(".stats");
-  generateSection.scrollIntoView({ behavior: "smooth" });
+  document.querySelector(".stats").scrollIntoView({ behavior: "smooth" });
 };
 
 const ReloadPage = (e) => {
@@ -18,39 +21,39 @@ const ReloadPage = (e) => {
   window.location.reload();
 };
 
+const checkAuthStatus = (setIsLoggedIn) => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get("token");
+
+  if (token) {
+    sessionStorage.setItem("discord_access_token", token);
+    setIsLoggedIn(true);
+  } else {
+    const accessToken = sessionStorage.getItem("discord_access_token");
+    if (accessToken) {
+      setIsLoggedIn(true);
+    }
+  }
+};
+
+const openAdminPage = (isLoggedIn) => {
+  if (isLoggedIn) {
+    if (!window.adminWindow || window.adminWindow.closed) {
+      window.adminWindow = window.open(ADMIN_PAGE_URL, "_blank");
+    } else {
+      window.adminWindow.focus();
+    }
+  } else {
+    window.location.href = DISCORD_AUTH_URL;
+  }
+};
+
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const checkAuthStatus = async () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const token = urlParams.get("token");
-
-      if (token) {
-        sessionStorage.setItem("discord_access_token", token);
-        setIsLoggedIn(true);
-      } else {
-        const accessToken = sessionStorage.getItem("discord_access_token");
-        if (accessToken) {
-          setIsLoggedIn(true);
-        }
-      }
-    };
-
-    checkAuthStatus();
+    checkAuthStatus(setIsLoggedIn);
   }, []);
-
-  const openAdminPage = () => {
-    if (isLoggedIn) {
-      if (!window.adminWindow || window.adminWindow.closed) {
-        window.adminWindow = window.open("/LLMfront/admin.html", "_blank");
-      } else {
-        window.adminWindow.focus();
-      }
-    } else {
-      window.location.href = "http://localhost:3000/auth/discord";
-    }
-  };
 
   return (
     <div className="nav">
@@ -70,7 +73,7 @@ const Navbar = () => {
           </a>
         </div>
         <div className="manage-btn">
-          <button onClick={openAdminPage}>
+          <button onClick={() => openAdminPage(isLoggedIn)}>
             {isLoggedIn ? "Manage Server" : "LOGIN"}
           </button>
         </div>
