@@ -45,6 +45,7 @@
 
 .manage-btn button {
     background-color: #7289DA;
+    width: 12rem;
     color: white;
     border: none;
     padding: 16px 24px;

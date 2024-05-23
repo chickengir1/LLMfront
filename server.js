@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
+import axios from "axios";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -50,7 +51,6 @@ app.post("/api/save", async (req, res) => {
 
 app.put("/api/update/:id", async (req, res) => {
   const id = parseInt(req.params.id);
-  // const id = req.params.id;
   const updatedBox = req.body;
 
   try {
@@ -83,6 +83,48 @@ app.delete("/api/delete/:id", async (req, res) => {
     res.status(200).send({ message: "Data deleted successfully" });
   } catch (error) {
     errorHandler(res, error.message);
+  }
+});
+
+app.get("/auth/discord", (req, res) => {
+  const clientId = "1243206551972479087";
+  const redirectUri = encodeURIComponent(
+    "http://localhost:3000/oauth/redirect"
+  );
+  const scope = encodeURIComponent("identify email");
+  const responseType = "code";
+
+  const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}`;
+  res.redirect(discordAuthUrl);
+});
+
+app.get("/oauth/redirect", async (req, res) => {
+  const code = req.query.code;
+
+  const data = {
+    client_id: "1243206551972479087",
+    client_secret: "kzCa5IF4OjStANyvqFkuvp-c3poFyb1p",
+    grant_type: "authorization_code",
+    code: code,
+    redirect_uri: "http://localhost:3000/oauth/redirect",
+  };
+
+  try {
+    const response = await axios.post(
+      "https://discord.com/api/oauth2/token",
+      new URLSearchParams(data),
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    );
+
+    const accessToken = response.data.access_token;
+    res.redirect(`http://localhost:5173?token=${accessToken}`);
+  } catch (error) {
+    console.error("Error fetching Discord token:", error);
+    res.status(500).send("Authentication failed");
   }
 });
 
