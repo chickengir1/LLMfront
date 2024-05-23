@@ -4,7 +4,6 @@ import "./Navbar.css";
 // Define constants for the URLs
 const DISCORD_AUTH_URL = "http://localhost:3000/auth/discord";
 const ADMIN_PAGE_URL = "/LLMfront/admin.html";
-const MAIN_PAGE_URL = "http://localhost:5173/LLMfront";
 
 const PageMove1 = (e) => {
   e.preventDefault();
