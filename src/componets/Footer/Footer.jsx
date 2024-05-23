@@ -7,7 +7,7 @@ const Footer = () => {
         <div className='icon'>
       <i className="fab fa-discord discord-icon"></i>
       </div>
-      <p className='ptag'>Discord Chat Bot</p>
+      <p className='ptag'>Discord Chat Bot.</p>
     </div>
   );
 };
