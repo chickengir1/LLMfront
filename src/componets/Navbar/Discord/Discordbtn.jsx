@@ -24,7 +24,7 @@ const DiscordLoginButton = () => {
                 .then((response) => {
                     console.log(response.data.access_token);
                     localStorage.setItem('discord_access_token', response.data.access_token);
-                    window.location.href = 'http://localhost:5173/LLMfront'; // Redirect back to the main page after login
+                    window.location.href = 'http://localhost:5173/LLMfront'; 
                 })
                 .catch((error) => {
                     console.error('Error fetching Discord token:', error);

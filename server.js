@@ -16,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Utility functions for reading and writing JSON files
 const readJsonFile = async (filePath) => {
   try {
     const data = await fs.readFile(filePath, "utf8");
@@ -33,10 +34,12 @@ const writeJsonFile = async (filePath, data) => {
   }
 };
 
+// Error handling middleware
 const errorHandler = (res, message, statusCode = 500) => {
   res.status(statusCode).send({ error: message });
 };
 
+// API routes
 app.post("/api/save", async (req, res) => {
   const newBox = req.body;
   try {
@@ -86,6 +89,7 @@ app.delete("/api/delete/:id", async (req, res) => {
   }
 });
 
+// Discord OAuth routes
 app.get("/auth/discord", (req, res) => {
   const clientId = "1243206551972479087";
   const redirectUri = encodeURIComponent(
@@ -128,6 +132,7 @@ app.get("/oauth/redirect", async (req, res) => {
   }
 });
 
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
