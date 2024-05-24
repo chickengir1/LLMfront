@@ -12,6 +12,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const DB_PATH = path.join(__dirname, "public", "db.json");
 
+const DISCORD_CLIENT_ID = "1243369575454867456";
+const DISCORD_CLIENT_SECRET = "cpeNbXj6pOHjdVpxbJF1ssh189xkNqbz";
+const DISCORD_REDIRECT_URI = "http://localhost:3000/oauth/login";
+const DISCORD_SCOPE = "identify email guilds guilds.members.read";
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -22,7 +27,7 @@ const readJsonFile = async (filePath) => {
     const data = await fs.readFile(filePath, "utf8");
     return JSON.parse(data);
   } catch (err) {
-    throw new Error("Error reading db.json");
+    throw new Error("Error reading JSON file");
   }
 };
 
@@ -30,11 +35,58 @@ const writeJsonFile = async (filePath, data) => {
   try {
     await fs.writeFile(filePath, JSON.stringify(data, null, 2));
   } catch (err) {
-    throw new Error("Error writing to db.json");
+    throw new Error("Error writing to JSON file");
   }
 };
 
-// Error handling middleware
+const fetchDiscordToken = async (code) => {
+  const data = {
+    client_id: DISCORD_CLIENT_ID,
+    client_secret: DISCORD_CLIENT_SECRET,
+    grant_type: "authorization_code",
+    code,
+    redirect_uri: DISCORD_REDIRECT_URI,
+  };
+
+  const response = await axios.post(
+    "https://discord.com/api/oauth2/token",
+    new URLSearchParams(data),
+    {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    }
+  );
+
+  return response.data.access_token;
+};
+
+const fetchUserGuilds = async (accessToken) => {
+  const response = await axios.get("https://discord.com/api/users/@me/guilds", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  return response.data;
+};
+
+const fetchGuildMembers = async (guildId, botToken) => {
+  const response = await axios.get(
+    `https://discord.com/api/guilds/${guildId}/members`,
+    {
+      headers: {
+        Authorization: `Bot ${botToken}`,
+      },
+      params: {
+        limit: 1000,
+      },
+    }
+  );
+
+  return response.data;
+};
+
 const errorHandler = (res, message, statusCode = 500) => {
   res.status(statusCode).send({ error: message });
 };
@@ -91,43 +143,42 @@ app.delete("/api/delete/:id", async (req, res) => {
 
 // Discord OAuth routes
 app.get("/auth/discord", (req, res) => {
-  const clientId = "1243206551972479087";
-  const redirectUri = encodeURIComponent(
-    "http://localhost:3000/oauth/redirect"
-  );
-  const scope = encodeURIComponent("identify email");
-  const responseType = "code";
-
-  const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}`;
+  const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(
+    DISCORD_REDIRECT_URI
+  )}&response_type=code&scope=${encodeURIComponent(DISCORD_SCOPE)}`;
   res.redirect(discordAuthUrl);
 });
 
-app.get("/oauth/redirect", async (req, res) => {
+app.get("/oauth/login", async (req, res) => {
   const code = req.query.code;
 
-  const data = {
-    client_id: "1243206551972479087",
-    client_secret: "kzCa5IF4OjStANyvqFkuvp-c3poFyb1p",
-    grant_type: "authorization_code",
-    code: code,
-    redirect_uri: "http://localhost:3000/oauth/redirect",
-  };
-
   try {
-    const response = await axios.post(
-      "https://discord.com/api/oauth2/token",
-      new URLSearchParams(data),
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      }
-    );
+    const accessToken = await fetchDiscordToken(code);
+    const guilds = await fetchUserGuilds(accessToken);
+    const botList = [];
 
-    const accessToken = response.data.access_token;
-    res.redirect(`http://localhost:5173?token=${accessToken}`);
+    for (const guild of guilds) {
+      try {
+        const members = await fetchGuildMembers(
+          guild.id,
+          process.env.BOT_TOKEN
+        );
+        const bots = members.filter((member) => member.user.bot);
+        botList.push(
+          ...bots.map((bot) => ({ guild: guild.name, bot: bot.user.username }))
+        );
+      } catch (error) {
+        console.error(`Error fetching members for guild ${guild.name}:`, error);
+      }
+    }
+
+    res.redirect(
+      `http://localhost:5173?token=${encodeURIComponent(
+        accessToken
+      )}&botList=${encodeURIComponent(JSON.stringify(botList))}`
+    );
   } catch (error) {
-    console.error("Error fetching Discord token:", error);
+    console.error("Error during OAuth process:", error);
     res.status(500).send("Authentication failed");
   }
 });

@@ -25,12 +25,19 @@ const checkAuthStatus = (setIsLoggedIn) => {
   const token = urlParams.get("token");
 
   if (token) {
+    console.log("Token found in URL:", token);
     sessionStorage.setItem("discord_access_token", token);
     setIsLoggedIn(true);
+    // Remove the token from the URL to clean it up
+    window.history.replaceState({}, document.title, window.location.pathname);
   } else {
     const accessToken = sessionStorage.getItem("discord_access_token");
     if (accessToken) {
+      console.log("Token found in sessionStorage:", accessToken);
       setIsLoggedIn(true);
+    } else {
+      console.log("No token found");
+      setIsLoggedIn(false);
     }
   }
 };
