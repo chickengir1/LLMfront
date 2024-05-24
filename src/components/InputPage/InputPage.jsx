@@ -93,6 +93,9 @@ const InputPage = () => {
     } finally {
       setLoading(false);
     }
+    setTimeout(() => {
+      navigate(-1);
+    }, 1500);
   };
 
   const handleCancel = () => {
