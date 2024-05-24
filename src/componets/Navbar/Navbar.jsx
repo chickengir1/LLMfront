@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 
-// Define constants for the URLs
 const DISCORD_AUTH_URL = "http://localhost:3000/auth/discord";
 const ADMIN_PAGE_URL = "/LLMfront/admin.html";
 
@@ -28,7 +27,6 @@ const checkAuthStatus = (setIsLoggedIn) => {
     console.log("Token found in URL:", token);
     sessionStorage.setItem("discord_access_token", token);
     setIsLoggedIn(true);
-    // Remove the token from the URL to clean it up
     window.history.replaceState({}, document.title, window.location.pathname);
   } else {
     const accessToken = sessionStorage.getItem("discord_access_token");

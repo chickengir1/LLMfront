@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   init();
 });
+
 let currentPage = 1;
 let itemsPerPage = 5;
 let totalItems = 0;
@@ -97,10 +98,20 @@ const changePage = (direction) => {
   toggleButtonState();
 };
 
+const fetchData = async (url) => {
+  try {
+    const response = await fetch(url);
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};
+
 const init = () => {
-  setupPagination();
   setupModalEvents();
   loadBoxesFromJson();
+  setupPagination();
 };
 
 init();

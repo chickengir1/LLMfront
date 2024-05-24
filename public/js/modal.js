@@ -36,6 +36,7 @@ const closeModal = () => {
 };
 
 const saveChanges = async () => {
+  console.log("Save Changes button clicked"); // 디버그 로그 추가
   if (currentEditId === null) return;
 
   const box = document.getElementById(currentEditId);
@@ -46,6 +47,9 @@ const saveChanges = async () => {
   ).map((input) => input.value);
   const content = box.querySelector("p").innerText;
   const oldLinks = JSON.parse(box.dataset.links);
+
+  console.log("New Content:", newContent); // 디버그 로그 추가
+  console.log("New Links:", newLinks); // 디버그 로그 추가
 
   if (
     newContent !== content ||
@@ -73,6 +77,32 @@ const saveChanges = async () => {
     }
   }
   closeModal();
+  console.log("Success");
+};
+
+const addLinkEventListeners = () => {
+  const addLinkBtns = document.querySelectorAll(".add-link");
+  const removeLinkBtns = document.querySelectorAll(".remove-link");
+
+  addLinkBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const linkInputDiv = document.createElement("div");
+      linkInputDiv.className = "link-input";
+      linkInputDiv.innerHTML = `
+        <input type="text" placeholder="링크를 입력하세요..." />
+        <button class="add-link">+</button>
+        <button class="remove-link">-</button>
+      `;
+      btn.parentElement.parentElement.appendChild(linkInputDiv);
+      addLinkEventListeners();
+    });
+  });
+
+  removeLinkBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      btn.parentElement.remove();
+    });
+  });
 };
 
 const setupModalEvents = () => {
@@ -86,3 +116,5 @@ const setupModalEvents = () => {
 
   addLinkEventListeners();
 };
+
+setupModalEvents();

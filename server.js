@@ -61,6 +61,16 @@ const fetchDiscordToken = async (code) => {
   return response.data.access_token;
 };
 
+const fetchDiscordUser = async (accessToken) => {
+  const response = await axios.get("https://discord.com/api/users/@me", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  return response.data;
+};
+
 const fetchUserGuilds = async (accessToken) => {
   const response = await axios.get("https://discord.com/api/users/@me/guilds", {
     headers: {
@@ -71,20 +81,21 @@ const fetchUserGuilds = async (accessToken) => {
   return response.data;
 };
 
-const fetchGuildMembers = async (guildId, botToken) => {
+const fetchGuildMember = async (guildId, userId, accessToken) => {
   const response = await axios.get(
-    `https://discord.com/api/guilds/${guildId}/members`,
+    `https://discord.com/api/guilds/${guildId}/members/${userId}`,
     {
       headers: {
-        Authorization: `Bot ${botToken}`,
-      },
-      params: {
-        limit: 1000,
+        Authorization: `Bearer ${accessToken}`,
       },
     }
   );
 
   return response.data;
+};
+
+const isAdmin = (member) => {
+  return member.permissions & 0x00000008; // ADMINISTRATOR 권한 비트 확인
 };
 
 const errorHandler = (res, message, statusCode = 500) => {
@@ -154,28 +165,25 @@ app.get("/oauth/login", async (req, res) => {
 
   try {
     const accessToken = await fetchDiscordToken(code);
+    const user = await fetchDiscordUser(accessToken);
     const guilds = await fetchUserGuilds(accessToken);
-    const botList = [];
+    const adminGuilds = [];
 
     for (const guild of guilds) {
       try {
-        const members = await fetchGuildMembers(
-          guild.id,
-          process.env.BOT_TOKEN
-        );
-        const bots = members.filter((member) => member.user.bot);
-        botList.push(
-          ...bots.map((bot) => ({ guild: guild.name, bot: bot.user.username }))
-        );
+        const member = await fetchGuildMember(guild.id, user.id, accessToken);
+        if (isAdmin(member)) {
+          adminGuilds.push(guild);
+        }
       } catch (error) {
         console.error(`Error fetching members for guild ${guild.name}:`, error);
       }
     }
 
     res.redirect(
-      `http://localhost:5173?token=${encodeURIComponent(
+      `http://localhost:5173/LLMfront/?token=${encodeURIComponent(
         accessToken
-      )}&botList=${encodeURIComponent(JSON.stringify(botList))}`
+      )}&adminGuilds=${encodeURIComponent(JSON.stringify(adminGuilds))}`
     );
   } catch (error) {
     console.error("Error during OAuth process:", error);
