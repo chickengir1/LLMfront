@@ -1,0 +1,28 @@
+.section {
+    margin-bottom: 20px;
+  }
+  
+  .section label {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  .section input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .Num-sec {
+    display: flex;
+  }
+  
+  .Num-CN {
+    margin-left: 15px;
+    width: 400px;
+
+  }
+  

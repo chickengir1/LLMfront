@@ -1,0 +1,11 @@
+.model-dropdown {
+    background: #fff;
+    font-size: 14px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    resize: none;
+    height: 45px;
+  }
+  

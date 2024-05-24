@@ -3,11 +3,14 @@
     "id": 1,
     "model": "meta-llama-3-70b-instruct",
     "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "DISCORD-BOT에게 가면을 씌워주세요!",
     "data": [
       {
         "id": 1,
-        "title": "1번째 테스트",
-        "content": "1번째 테스트",
+        "title": "1",
+        "content": "1",
         "links": [
           ""
         ]
@@ -16,13 +19,16 @@
   },
   {
     "id": 2,
-    "model": "mistral-7b-instruct-v0-2",
+    "model": "mixtral-8x7b-instruct-v0-1",
     "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "ㅇㅇ",
     "data": [
       {
         "id": 2,
-        "title": "ㅁㄴㅇㄴㅁㅇ",
-        "content": "ㅁㄴㅇㄴㅇㅁ",
+        "title": "ㅇ",
+        "content": "ㅇ",
         "links": [
           ""
         ]

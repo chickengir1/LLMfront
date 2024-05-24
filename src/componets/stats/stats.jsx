@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import Toast from "../toast/Toast";
-import ModelDropdown from "./ModelDropdown";
-import TitleInput from "./TitleInput";
-import PromptTextarea from "./PromptTextarea";
-import LinksInput from "./Linkinput";
+import ModelDropdown from "./ModelDropdown/ModelDropdown";
+import TextInput from "./TextInput/TextInput";
+import TextareaInput from "./TextareaInput/TextareaInput";
+import LinkInput from "./LinkInput/LinkInput";
+import NumberInput from "./NumberInput/NumberInput";
 import "./stats.css";
+
+const models = [
+  "모델을 선택해주세요",
+  "meta-llama-3-70b-instruct",
+  "mistral-7b-instruct-v0-2",
+  "mixtral-8x7b-instruct-v0-1",
+  "gemma-7b-it",
+];
 
 const Stats = () => {
   const [textarea, setTextarea] = useState(false);
@@ -13,7 +22,10 @@ const Stats = () => {
   const [links, setLinks] = useState([""]);
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
-  const [selectedModel, setSelectedModel] = useState("모델을 선택해주세요");
+  const [selectedModel, setSelectedModel] = useState(models[0]);
+  const [temperature, setTemperature] = useState(0.7);
+  const [responseMaxTokens, setResponseMaxTokens] = useState(200);
+  const [persona, setPersona] = useState("");
 
   const handleTextareaToggle = (reset = false) => {
     setTextarea(!textarea);
@@ -21,6 +33,25 @@ const Stats = () => {
       setTitle("");
       setContent("");
       setLinks([""]);
+      setTemperature(0.7);
+      setResponseMaxTokens(200);
+      setPersona("");
+    }
+  };
+
+  const handleChange = (setter) => (event) => setter(event.target.value);
+
+  const handleLinkChange = (index) => (event) => {
+    const newLinks = [...links];
+    newLinks[index] = event.target.value;
+    setLinks(newLinks);
+  };
+
+  const handleLinkField = (index, action) => {
+    if (action === "add") {
+      setLinks([...links, ""]);
+    } else {
+      setLinks(links.filter((_, i) => i !== index));
     }
   };
 
@@ -53,6 +84,9 @@ const Stats = () => {
         id: newId,
         model: selectedModel,
         bot_name: "Friendli",
+        temperature,
+        response_max_tokens: responseMaxTokens,
+        persona,
         data: [newBox]
       };
 
@@ -90,10 +124,51 @@ const Stats = () => {
         {textarea && (
           <div className="textarea">
             <div className="area">
-              <ModelDropdown selectedModel={selectedModel} setSelectedModel={setSelectedModel} />
-              <TitleInput title={title} setTitle={setTitle} />
-              <PromptTextarea content={content} setContent={setContent} />
-              <LinksInput links={links} setLinks={setLinks} />
+              <ModelDropdown
+                models={models}
+                selectedModel={selectedModel}
+                setSelectedModel={setSelectedModel}
+              />
+              <TextInput
+                label="이름 입력"
+                value={title}
+                onChange={handleChange(setTitle)}
+                placeholder="제목을 입력하세요..."
+              />
+              <TextareaInput
+                label="프롬프트"
+                value={content}
+                onChange={handleChange(setContent)}
+                placeholder="내용을 입력하세요..."
+              />
+              <LinkInput
+                links={links}
+                handleLinkChange={handleLinkChange}
+                handleLinkField={handleLinkField}
+              />
+              <div className="Num-CON">
+              <NumberInput
+                label="온도(Temperature)"
+                value={temperature}
+                min={0}
+                max={3}
+                step={0.1}
+                onChange={(e) => setTemperature(parseFloat(e.target.value))}
+              />
+              <NumberInput
+                label="최대 응답 토큰 수(Max Response Tokens)"
+                value={responseMaxTokens}
+                min={0}
+                max={4000}
+                onChange={(e) => setResponseMaxTokens(parseInt(e.target.value, 10))}
+              />
+              </div>
+              <TextInput
+                label="페르소나(System Prompt)"
+                value={persona}
+                placeholder="당신은 유용한 AI 어시스턴트입니다. 사용자의 질의에 대해 친절하고 정확하게 답변해야 합니다."
+                onChange={handleChange(setPersona)}
+              />
             </div>
             <div className="row">
               <button className="submit" onClick={AiGenerate} disabled={title.trim() === "" || content.trim() === ""}>

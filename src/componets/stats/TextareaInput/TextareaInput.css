@@ -1,0 +1,26 @@
+.textarea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .textarea label {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  .input {
+    background: #fff;
+    font-size: 14px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 95%;
+    height: 10rem;
+    resize: none;
+    margin-bottom: -10px;
+  }
+  

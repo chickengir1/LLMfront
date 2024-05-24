@@ -14,7 +14,7 @@ const DB_PATH = path.join(__dirname, "public", "db.json");
 const DISCORD_CLIENT_ID = "1243369575454867456";
 const DISCORD_CLIENT_SECRET = "cpeNbXj6pOHjdVpxbJF1ssh189xkNqbz";
 const DISCORD_REDIRECT_URI = "http://localhost:3000/oauth/login";
-const DISCORD_SCOPE = "identify email";
+const DISCORD_SCOPE = "identify email guilds guilds.members.read";
 
 app.use(cors());
 app.use(express.json());
@@ -76,6 +76,41 @@ const fetchDiscordUser = async (accessToken) => {
   return await response.json();
 };
 
+const fetchUserGuilds = async (accessToken) => {
+  const response = await fetch("https://discord.com/api/users/@me/guilds", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch user guilds");
+  }
+
+  return await response.json();
+};
+
+const fetchGuildMember = async (guildId, userId, accessToken) => {
+  const response = await fetch(
+    `https://discord.com/api/guilds/${guildId}/members/${userId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch guild member for guild ID: ${guildId}`);
+  }
+
+  return await response.json();
+};
+
+const isAdmin = (member) => {
+  return member.permissions & 0x00000008; // ADMINISTRATOR 권한 비트 확인
+};
+
 const errorHandler = (res, message, statusCode = 500) => {
   res.status(statusCode).send({ error: message });
 };
@@ -108,11 +143,24 @@ app.get("/oauth/login", async (req, res) => {
   try {
     const accessToken = await fetchDiscordToken(code);
     const user = await fetchDiscordUser(accessToken);
+    const guilds = await fetchUserGuilds(accessToken);
+    const adminGuilds = [];
+
+    for (const guild of guilds) {
+      try {
+        const member = await fetchGuildMember(guild.id, user.id, accessToken);
+        if (isAdmin(member)) {
+          adminGuilds.push(guild);
+        }
+      } catch (error) {
+        console.error(`Error fetching members for guild ${guild.name}:`, error);
+      }
+    }
 
     res.redirect(
       `http://localhost:5173/LLMfront/?token=${encodeURIComponent(
         accessToken
-      )}&user=${encodeURIComponent(JSON.stringify(user))}`
+      )}&adminGuilds=${encodeURIComponent(JSON.stringify(adminGuilds))}`
     );
   } catch (error) {
     console.error("Error during OAuth process:", error);
