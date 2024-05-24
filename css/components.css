@@ -10,24 +10,19 @@
   width: 98%;
   height: 10rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(135deg, #7289DA, #5865F2, #4B60D6, #3B4CCA, #2A3D9F);
+  background: linear-gradient(135deg, #7289DA, #AEB8FE, #D2D8FE, #F0F2FF, #D2D8FE, #AEB8FE, #7289DA);
   background-size: 200% 200%;
-  animation: gradientBackground 5s infinite; 
+  animation: gradientBackground 5s linear infinite;
 }
 
 @keyframes gradientBackground {
   0% {
     background-position: 0% 50%;
   }
-  50% {
+  100% {
     background-position: 100% 50%;
   }
-  100% {
-    background-position: 0% 50%;
-  }
 }
-
-
 
 .new-box > .title-box {
   display: flex;
@@ -37,12 +32,12 @@
   margin: 0 20px 0 15px;
   width: 20%;
   height: 100%;
-  background: linear-gradient(135deg, #7289DA, #5865F2, #4B60D6, #3B4CCA, #2A3D9F);
-  background-size: 200% 200%;
-  animation: gradientBackground 5s infinite; 
+  background: linear-gradient(120deg, #7289DA, #8EA2F2, #AEB8FE, #F0F2FF, #AEB8FE, #8EA2F2, #7289DA);
   color: #fff;
   border-radius: 5px;
+  background-size: 300% 200%;
 }
+
 
 .new-box > .title-box > i {
   margin-bottom: 10px;
