@@ -1,82 +1,74 @@
 [
   {
-    "id": 8,
-    "title": "ㅇㅇ",
-    "content": "내용 바꾼다ㅇㅇㅇㅇㅇㅇㅇ",
-    "links": [
-      "1",
-      "링크 하나 삭제함"
+    "id": 1,
+    "model": "meta-llama-3-70b-instruct",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "DISCORD-BOT에게 가면을 씌워주세요!",
+    "data": [
+      {
+        "id": 1,
+        "title": "봇이름",
+        "content": "1",
+        "links": [
+          ""
+        ]
+      }
     ]
   },
   {
     "id": 2,
-    "title": "1",
-    "content": "1ㅁㄴㅁㄴㅇㅁㄴㅇㅇㅇㅇ",
-    "links": [
-      "123"
+    "model": "mixtral-8x7b-instruct-v0-1",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "ㅇㅇ",
+    "data": [
+      {
+        "id": 2,
+        "title": "봇제목",
+        "content": "ㅇ",
+        "links": [
+          ""
+        ]
+      }
     ]
   },
   {
     "id": 3,
-    "title": "2",
-    "content": "2ㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ",
-    "links": [
-      "ㅇㅇㅇㅇ",
-      "ㅁㄴㅇㅁㄴㅇ",
-      "ㅁㄴㅇㅇㅁㄴㅁㄴㅇ"
+    "model": "mistral-7b-instruct-v0-2",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "",
+    "data": [
+      {
+        "id": 3,
+        "title": "봇타이틀!",
+        "content": "ㅇ",
+        "links": [
+          ""
+        ]
+      }
     ]
   },
   {
     "id": 4,
-    "title": "3",
-    "content": "3ㅇㅁㄴㄴㅇㅁㅁㄴㅇㅇㄴㄴㅇㅁㅁㄴㅇㅁㄴㅇ",
-    "links": [
-      "ㅁㄴㅇㄴㅁㅇㅁㄴㅇㄴㅁㅇㄴㅁㅇ"
-    ]
-  },
-  {
-    "id": 5,
-    "title": "4",
-    "content": "4ㅇㅇㅇㅇㅇ",
-    "links": [
-      ""
-    ]
-  },
-  {
-    "id": 6,
-    "title": "5",
-    "content": "5",
-    "links": [
-      ""
-    ]
-  },
-  {
-    "id": 7,
-    "title": "6",
-    "content": "6",
-    "links": [
-      "링크",
-      "링크"
-    ]
-  },
-  {
-    "id": 8,
-    "title": "ㅇㅇ",
-    "content": "ㅇㅇ",
-    "links": [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5"
-    ]
-  },
-  {
-    "id": 9,
-    "title": "ㅇㅇ",
-    "content": "ㅇㅇ",
-    "links": [
-      ""
+    "model": "mistral-7b-instruct-v0-2",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "",
+    "data": [
+      {
+        "id": 4,
+        "title": "자두과자",
+        "content": "123",
+        "links": [
+          ""
+        ]
+      }
     ]
   }
 ]

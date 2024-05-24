@@ -1,49 +1,105 @@
-/* components.css */
 .new-box {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    background-color: #fff;
-    width: 95%;
-    height: 100px;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .new-box > strong {
-    color: #fff;
-    background: linear-gradient(135deg, #7289DA, #5A6EB9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 15rem;
-    max-width: 10rem;
-    max-height: 4.5rem;
-    padding: 10px;
-    box-sizing: border-box;
-    font-size: 18px;
-    border-radius: 10px;
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-align: center;
-    white-space: normal;
-  }
-  
-  .new-box > p {
-    flex: 1;
-    font-weight: bold;
-    padding-left: 1.5rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 98%;
+  height: 10rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.new-box > .title-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px 0 15px;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(135deg, #7289DA, #5A6EB9);
+  color: #fff;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.new-box > .title-box > i {
+  margin-bottom: 10px;
+  font-size: 36px;
+}
+
+.new-box > .title-box > .model-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  color: black;
+  width: 10rem;
+  min-height: 3rem;
+  max-height: 4rem;
+  border: 1px solid #7289DA;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.new-box > .content-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  margin-right: 10px;
+}
+
+.new-box > .content-box > .content-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 90%;
+}
+
+.new-box > .content-box > .content-inner > .div-i {
+  width: 90%;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 10rem;
+}
+
+.new-box > .content-box > .content-inner > .div-p {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fff;
+}
+
+.new-box > .content-box > .content-inner > .div-p > p {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10%;
+  height: 100%;
+}

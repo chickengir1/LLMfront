@@ -1,5 +1,5 @@
 const updatePageNumber = (page) => {
-  document.getElementById("pageNumber").textContent = page;
+  document.getElementById("pageNumber").textContent = `${page}`;
 };
 
 const toggleButtonState = () => {
@@ -7,6 +7,13 @@ const toggleButtonState = () => {
   const nextButton = document.getElementById("nextPage");
   prevButton.disabled = currentPage === 1;
   nextButton.disabled = currentPage * itemsPerPage >= totalItems;
+};
+
+const changePage = (direction) => {
+  currentPage += direction;
+  renderBoxes(dataCache);
+  updatePageNumber(currentPage);
+  toggleButtonState();
 };
 
 const setupPagination = () => {
