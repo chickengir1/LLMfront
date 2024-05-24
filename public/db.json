@@ -70,5 +70,41 @@
         ]
       }
     ]
+  },
+  {
+    "id": 5,
+    "model": "mixtral-8x7b-instruct-v0-1",
+    "bot_name": "Friendli",
+    "temperature": 3,
+    "response_max_tokens": 200,
+    "persona": "야 잘해라",
+    "data": [
+      {
+        "id": 5,
+        "title": "333333",
+        "content": "33333333",
+        "links": [
+          "33333333"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "model": "mistral-7b-instruct-v0-2",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "ㅇㅇ",
+    "data": [
+      {
+        "id": 6,
+        "title": "3333333333333333333333",
+        "content": "333333333333333333",
+        "links": [
+          ""
+        ]
+      }
+    ]
   }
 ]

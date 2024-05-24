@@ -136,6 +136,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden; 
 }
 
 .new-box > .content-box > .content-inner > .div-p > p {
@@ -143,6 +144,9 @@
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
 
 .actions {
