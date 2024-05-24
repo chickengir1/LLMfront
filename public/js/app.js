@@ -89,6 +89,7 @@ const deleteBox = async (id) => {
         totalItems--;
         updatePageNumber(currentPage);
         toggleButtonState();
+        window.location.reload();
       } else {
         console.error("Error deleting data");
       }
