@@ -96,7 +96,7 @@ const InputPage = () => {
   };
 
   const handleCancel = () => {
-    navigate(-1); // 이전 페이지로 이동
+    navigate(-1);
   };
 
   return (
