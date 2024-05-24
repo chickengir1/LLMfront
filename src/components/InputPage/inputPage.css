@@ -6,34 +6,6 @@
     justify-content: center;
     align-items: center;
   }
-  .started {
-    background: #fff;
-    padding: 0.5em 1em;
-    font-size: 1em;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .started:hover {
-    background-color: #7289da;
-  }
-  
-  .text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    flex-direction: column;
-    letter-spacing: 4px;
-  }
-  
-  .description {
-    color: #7289da;
-    text-align: center;
-  }
   
   /* 버튼 박스 스타일 */
   .btnbox {

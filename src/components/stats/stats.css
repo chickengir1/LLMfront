@@ -8,7 +8,10 @@
     padding: 20px;
 }
 
-  .started {
+
+.started {
+   width: 10rem;
+   height: 3rem;
     background: #fff;
     padding: 0.5em 1em;
     font-size: 1em;
@@ -22,7 +25,6 @@
   .started:hover {
     background-color: #7289da;
   }
-  
   .text {
     display: flex;
     justify-content: center;
