@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let currentPage = 1;
-let itemsPerPage = 5;
+let itemsPerPage = 3;
 let totalItems = 0;
 let currentEditId = null;
 let dataCache = [];
@@ -15,8 +15,15 @@ const clearBotDiv = () => {
 const createBoxElement = (id, title, content, links, className) => {
   const newBox = document.createElement("div");
   newBox.innerHTML = `
-    <strong>${title}</strong>
-    <p>${content}</p>
+    <div class="title-box">
+      <i class="fab fa-discord"></i>
+      <div class="title-text">
+        <strong>${title}</strong>
+      </div>
+    </div>
+    <div class="content-box">
+      <p>${content}</p>
+    </div>
     <div class="actions">
       <button class="edit-btn">Edit</button>
       <button class="delete-btn">Delete</button>
@@ -89,13 +96,6 @@ const deleteBox = async (id) => {
       console.error("Error:", error);
     }
   }
-};
-
-const changePage = (direction) => {
-  currentPage += direction;
-  renderBoxes(dataCache);
-  updatePageNumber(currentPage);
-  toggleButtonState();
 };
 
 const fetchData = async (url) => {
