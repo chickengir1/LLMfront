@@ -30,7 +30,10 @@ const Stats = () => {
           <button
             className="started"
             onClick={handleGetStarted}
-            style={{ backgroundColor: isLoggedIn ? '' : '#7289da', color:"#fff" }}
+            style={{
+              backgroundColor: isLoggedIn ? '' : '#7289da',
+              color: isLoggedIn ? '' : '#fff'
+            }}
           >
             {isLoggedIn ? "GET STARTED" : "LOGIN"}
           </button>

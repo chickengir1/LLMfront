@@ -70,5 +70,131 @@
         ]
       }
     ]
+  },
+  {
+    "id": 5,
+    "model": "mistral-7b-instruct-v0-2",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "",
+    "data": [
+      {
+        "id": 5,
+        "title": "ㅇㅇ",
+        "content": "ㅇㅇ",
+        "links": [
+          ""
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "model": "mistral-7b-instruct-v0-2",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "",
+    "data": [
+      {
+        "id": 6,
+        "title": "ㅇㅇ",
+        "content": "ㅇㅇ",
+        "links": [
+          ""
+        ]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "model": "mistral-7b-instruct-v0-2",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "",
+    "data": [
+      {
+        "id": 7,
+        "title": "ㅇㅇ",
+        "content": "ㅇㅇ",
+        "links": [
+          ""
+        ]
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "model": "mistral-7b-instruct-v0-2",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "",
+    "data": [
+      {
+        "id": 8,
+        "title": "ㅇㅇ",
+        "content": "ㅇㅇ",
+        "links": [
+          ""
+        ]
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "model": "mistral-7b-instruct-v0-2",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "",
+    "data": [
+      {
+        "id": 9,
+        "title": "ㅇㅇ",
+        "content": "ㅇㅇ",
+        "links": [
+          ""
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "model": "mistral-7b-instruct-v0-2",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "",
+    "data": [
+      {
+        "id": 10,
+        "title": "ㅇㅇ",
+        "content": "ㅇㅇ",
+        "links": [
+          ""
+        ]
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "model": "mixtral-8x7b-instruct-v0-1",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "",
+    "data": [
+      {
+        "id": 11,
+        "title": "ㅇㅇ",
+        "content": "ㅇㅇ",
+        "links": [
+          ""
+        ]
+      }
+    ]
   }
 ]
