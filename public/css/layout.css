@@ -23,11 +23,16 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 70vw;
-    height: 70vh;
-    border: 1px ridge #ddd;
+    width: 75vw;
+    height: 75vh;
     border-radius: 1rem;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    background: linear-gradient(135deg, #99AAB5, #4E5D94);
+  }
+
+  .footer {
+    width: 90vw;
+    height: 10vh;
+    background: transparent
   }

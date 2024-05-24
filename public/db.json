@@ -9,7 +9,7 @@
     "data": [
       {
         "id": 1,
-        "title": "1",
+        "title": "봇이름",
         "content": "1",
         "links": [
           ""
@@ -27,7 +27,7 @@
     "data": [
       {
         "id": 2,
-        "title": "ㅇ",
+        "title": "봇제목",
         "content": "ㅇ",
         "links": [
           ""
@@ -45,8 +45,26 @@
     "data": [
       {
         "id": 3,
-        "title": "ㅇ",
+        "title": "봇타이틀!",
         "content": "ㅇ",
+        "links": [
+          ""
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "model": "mistral-7b-instruct-v0-2",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "",
+    "data": [
+      {
+        "id": 4,
+        "title": "자두과자",
+        "content": "123",
         "links": [
           ""
         ]
