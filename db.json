@@ -1,16 +1,16 @@
 [
   {
     "id": 1,
-    "model": "meta-llama-3-70b-instruct",
+    "model": "mixtral-8x7b-instruct-v0-1",
     "bot_name": "Friendli",
     "temperature": 0.7,
     "response_max_tokens": 200,
-    "persona": "DISCORD-BOT에게 가면을 씌워주세요!",
+    "persona": "",
     "data": [
       {
         "id": 1,
-        "title": "봇이름",
-        "content": "1",
+        "title": "테스트1테스트1테스트1",
+        "content": "ㅇㅇ",
         "links": [
           ""
         ]
@@ -19,16 +19,16 @@
   },
   {
     "id": 2,
-    "model": "mixtral-8x7b-instruct-v0-1",
+    "model": "mistral-7b-instruct-v0-2",
     "bot_name": "Friendli",
     "temperature": 0.7,
     "response_max_tokens": 200,
-    "persona": "ㅇㅇ",
+    "persona": "",
     "data": [
       {
         "id": 2,
-        "title": "봇제목",
-        "content": "ㅇ",
+        "title": "테스트2테스트2테스트2",
+        "content": "ㅇㅇ",
         "links": [
           ""
         ]
@@ -45,26 +45,8 @@
     "data": [
       {
         "id": 3,
-        "title": "봇타이틀!",
-        "content": "ㅇ",
-        "links": [
-          ""
-        ]
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "model": "mistral-7b-instruct-v0-2",
-    "bot_name": "Friendli",
-    "temperature": 0.7,
-    "response_max_tokens": 200,
-    "persona": "",
-    "data": [
-      {
-        "id": 4,
-        "title": "자두과자",
-        "content": "123",
+        "title": "테스트3테스트3테스트3",
+        "content": "3",
         "links": [
           ""
         ]

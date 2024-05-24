@@ -10,7 +10,24 @@
   width: 98%;
   height: 10rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #7289DA, #5865F2, #4B60D6, #3B4CCA, #2A3D9F);
+  background-size: 200% 200%;
+  animation: gradientBackground 5s infinite; 
 }
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
 
 .new-box > .title-box {
   display: flex;
@@ -20,10 +37,11 @@
   margin: 0 20px 0 15px;
   width: 20%;
   height: 100%;
-  background: linear-gradient(135deg, #7289DA, #5A6EB9);
+  background: linear-gradient(135deg, #7289DA, #5865F2, #4B60D6, #3B4CCA, #2A3D9F);
+  background-size: 200% 200%;
+  animation: gradientBackground 5s infinite; 
   color: #fff;
   border-radius: 5px;
-  border: 1px solid #ccc;
 }
 
 .new-box > .title-box > i {
@@ -56,9 +74,8 @@
   align-items: center;
   height: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9;
+
   margin-right: 10px;
 }
 
@@ -78,7 +95,45 @@
   justify-content: center;
   font-weight: bolder;
   font-size: 10rem;
+  cursor: pointer;
+  position: relative;
 }
+
+.tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%; 
+  left: 46%;
+  transform: translateX(-50%);
+  font-size: 0.9rem; 
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%; 
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+.div-i:hover .tooltip-text {
+  visibility: visible;
+  opacity: 0.8;
+}
+
+
 
 .new-box > .content-box > .content-inner > .div-p {
   width: 90%;
@@ -86,7 +141,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #fff;
 }
 
 .new-box > .content-box > .content-inner > .div-p > p {
