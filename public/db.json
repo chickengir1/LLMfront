@@ -196,5 +196,23 @@
         ]
       }
     ]
+  },
+  {
+    "id": 12,
+    "model": "mixtral-8x7b-instruct-v0-1",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "",
+    "data": [
+      {
+        "id": 12,
+        "title": "123",
+        "content": "123",
+        "links": [
+          ""
+        ]
+      }
+    ]
   }
 ]
