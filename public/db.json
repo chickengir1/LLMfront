@@ -1,10 +1,77 @@
 [
   {
-    "id": 2,
-    "title": "2번 테스트",
-    "content": "2번 테스트33",
-    "links": [
-      ""
+    "id": 4,
+    "model": "meta-llama-3-70b-instruct",
+    "bot_name": "Friendli",
+    "data": [
+      {
+        "id": 4,
+        "title": "제목임",
+        "content": "ㅇㅇ",
+        "links": [
+          ""
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "model": "mistral-7b-instruct-v0-2",
+    "bot_name": "Friendli",
+    "data": [
+      {
+        "id": 5,
+        "title": "ㅇㅇ",
+        "content": "ㅇㅇ",
+        "links": [
+          "ㅇㅇ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "model": "mixtral-8x7b-instruct-v0-1",
+    "bot_name": "Friendli",
+    "data": [
+      {
+        "id": 6,
+        "title": "11",
+        "content": "11",
+        "links": [
+          "11"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "model": "gemma-7b-it",
+    "bot_name": "Friendli",
+    "data": [
+      {
+        "id": 7,
+        "title": "테스트 버전",
+        "content": "123",
+        "links": [
+          ""
+        ]
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "model": "mistral-7b-instruct-v0-2",
+    "bot_name": "Friendli",
+    "data": [
+      {
+        "id": 8,
+        "title": "2번테스트",
+        "content": "2번테스트",
+        "links": [
+          ""
+        ]
+      }
     ]
   }
 ]

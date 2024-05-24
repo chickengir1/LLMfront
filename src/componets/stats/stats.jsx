@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import Toast from "../toast/Toast";
+import ModelDropdown from "./ModelDropdown";
+import TitleInput from "./TitleInput";
+import PromptTextarea from "./PromptTextarea";
+import LinksInput from "./Linkinput";
 import "./stats.css";
 
 const Stats = () => {
@@ -9,6 +13,7 @@ const Stats = () => {
   const [links, setLinks] = useState([""]);
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
+  const [selectedModel, setSelectedModel] = useState("모델을 선택해주세요");
 
   const handleTextareaToggle = (reset = false) => {
     setTextarea(!textarea);
@@ -16,22 +21,6 @@ const Stats = () => {
       setTitle("");
       setContent("");
       setLinks([""]);
-    }
-  };
-
-  const handleChange = (setter) => (event) => setter(event.target.value);
-
-  const handleLinkChange = (index) => (event) => {
-    const newLinks = [...links];
-    newLinks[index] = event.target.value;
-    setLinks(newLinks);
-  };
-
-  const handleLinkField = (index, action) => {
-    if (action === "add") {
-      setLinks([...links, ""]);
-    } else {
-      setLinks(links.filter((_, i) => i !== index));
     }
   };
 
@@ -45,13 +34,32 @@ const Stats = () => {
 
       const data = await response.json();
 
-      const id = data.length + 1;
-      const newBox = { id, title, content, links };
+      const newId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
+      const newBoxId = data.reduce((maxId, model) => 
+        model.data.reduce((maxDataId, box) => Math.max(maxDataId, box.id), maxId), 0) + 1;
+
+      const newBox = {
+        id: newBoxId,
+        title,
+        content,
+        links
+      };
+
+      if (selectedModel === "모델을 선택해주세요") {
+        throw new Error('모델을 선택해주세요');
+      }
+
+      const newModel = {
+        id: newId,
+        model: selectedModel,
+        bot_name: "Friendli",
+        data: [newBox]
+      };
 
       const saveResponse = await fetch('/api/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newBox),
+        body: JSON.stringify(newModel),
       });
 
       if (!saveResponse.ok) throw new Error('Failed to save data');
@@ -59,7 +67,7 @@ const Stats = () => {
       setToast({ show: true, message: "생성이 완료되었습니다.", type: "success" });
     } catch (error) {
       console.error(error);
-      setToast({ show: true, message: "생성 중 오류가 발생했습니다.", type: "error" });
+      setToast({ show: true, message: error.message || "생성 중 오류가 발생했습니다.", type: "error" });
     } finally {
       setLoading(false);
     }
@@ -69,7 +77,8 @@ const Stats = () => {
     <div>
       <div className="stats">
         <span className="text">
-          <h1 className="description">DISCORD BOT WITH</h1> <h1 className="description">Friendli LLM</h1> 사용해 볼 준비가 되셨나요?
+          <h1 className="description">DISCORD BOT WITH</h1> 
+          <h1 className="description">Friendli LLM</h1> 사용해 볼 준비가 되셨나요?
         </span>
         <div className="btnbox">
           {!textarea && (
@@ -81,35 +90,10 @@ const Stats = () => {
         {textarea && (
           <div className="textarea">
             <div className="area">
-              <input
-                className="inputtitle"
-                placeholder="제목을 입력하세요..."
-                value={title}
-                onChange={handleChange(setTitle)}
-                maxLength={14} 
-              />
-              <textarea
-                className="input"
-                placeholder="내용을 입력하세요..."
-                value={content}
-                onChange={handleChange(setContent)}
-              />
-              <div className="inputs-container">
-                {links.map((link, index) => (
-                  <div key={index} className="link-input">
-                    <input
-                      type="text"
-                      placeholder="링크를 입력하세요..."
-                      value={link}
-                      onChange={handleLinkChange(index)}
-                    />
-                    <button onClick={() => handleLinkField(index, "add")}>+</button>
-                    {links.length > 1 && (
-                      <button onClick={() => handleLinkField(index, "remove")}>-</button>
-                    )}
-                  </div>
-                ))}
-              </div>
+              <ModelDropdown selectedModel={selectedModel} setSelectedModel={setSelectedModel} />
+              <TitleInput title={title} setTitle={setTitle} />
+              <PromptTextarea content={content} setContent={setContent} />
+              <LinksInput links={links} setLinks={setLinks} />
             </div>
             <div className="row">
               <button className="submit" onClick={AiGenerate} disabled={title.trim() === "" || content.trim() === ""}>

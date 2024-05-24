@@ -3,7 +3,6 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
-import axios from "axios";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -48,41 +47,51 @@ const fetchDiscordToken = async (code) => {
     redirect_uri: DISCORD_REDIRECT_URI,
   };
 
-  const response = await axios.post(
-    "https://discord.com/api/oauth2/token",
-    new URLSearchParams(data),
-    {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    }
-  );
+  const response = await fetch("https://discord.com/api/oauth2/token", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams(data),
+  });
 
-  return response.data.access_token;
+  if (!response.ok) {
+    throw new Error("Failed to fetch Discord token");
+  }
+
+  return (await response.json()).access_token;
 };
 
 const fetchDiscordUser = async (accessToken) => {
-  const response = await axios.get("https://discord.com/api/users/@me", {
+  const response = await fetch("https://discord.com/api/users/@me", {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
   });
 
-  return response.data;
+  if (!response.ok) {
+    throw new Error("Failed to fetch Discord user");
+  }
+
+  return await response.json();
 };
 
 const fetchUserGuilds = async (accessToken) => {
-  const response = await axios.get("https://discord.com/api/users/@me/guilds", {
+  const response = await fetch("https://discord.com/api/users/@me/guilds", {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
   });
 
-  return response.data;
+  if (!response.ok) {
+    throw new Error("Failed to fetch user guilds");
+  }
+
+  return await response.json();
 };
 
 const fetchGuildMember = async (guildId, userId, accessToken) => {
-  const response = await axios.get(
+  const response = await fetch(
     `https://discord.com/api/guilds/${guildId}/members/${userId}`,
     {
       headers: {
@@ -91,7 +100,11 @@ const fetchGuildMember = async (guildId, userId, accessToken) => {
     }
   );
 
-  return response.data;
+  if (!response.ok) {
+    throw new Error(`Failed to fetch guild member for guild ID: ${guildId}`);
+  }
+
+  return await response.json();
 };
 
 const isAdmin = (member) => {
@@ -107,46 +120,10 @@ app.post("/api/save", async (req, res) => {
   const newBox = req.body;
   try {
     const jsonData = await readJsonFile(DB_PATH);
+
     jsonData.push(newBox);
     await writeJsonFile(DB_PATH, jsonData);
-    res.status(200).send({ message: "Data saved successfully" });
-  } catch (error) {
-    errorHandler(res, error.message);
-  }
-});
-
-app.put("/api/update/:id", async (req, res) => {
-  const id = parseInt(req.params.id);
-  const updatedBox = req.body;
-
-  try {
-    const jsonData = await readJsonFile(DB_PATH);
-    const index = jsonData.findIndex((box) => box.id === id);
-    if (index === -1) {
-      return errorHandler(res, "Item not found", 404);
-    }
-
-    jsonData[index] = { ...jsonData[index], ...updatedBox };
-    await writeJsonFile(DB_PATH, jsonData);
-    res.status(200).send({ message: "Data updated successfully" });
-  } catch (error) {
-    errorHandler(res, error.message);
-  }
-});
-
-app.delete("/api/delete/:id", async (req, res) => {
-  const id = parseInt(req.params.id);
-
-  try {
-    const jsonData = await readJsonFile(DB_PATH);
-    const index = jsonData.findIndex((box) => box.id === id);
-    if (index === -1) {
-      return errorHandler(res, "Item not found", 404);
-    }
-
-    jsonData.splice(index, 1);
-    await writeJsonFile(DB_PATH, jsonData);
-    res.status(200).send({ message: "Data deleted successfully" });
+    res.status(200).send({ message: "Data saved successfully", newBox });
   } catch (error) {
     errorHandler(res, error.message);
   }
