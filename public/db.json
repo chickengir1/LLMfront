@@ -13,5 +13,20 @@
         ]
       }
     ]
+  },
+  {
+    "id": 2,
+    "model": "mistral-7b-instruct-v0-2",
+    "bot_name": "Friendli",
+    "data": [
+      {
+        "id": 2,
+        "title": "ㅁㄴㅇㄴㅁㅇ",
+        "content": "ㅁㄴㅇㄴㅇㅁ",
+        "links": [
+          ""
+        ]
+      }
+    ]
   }
 ]

@@ -19,7 +19,14 @@ const createBoxElement = (id, model, title, content, links, className) => {
       <div class="model-text">${model}</div>
     </div>
     <div class="content-box">
-      <p>${title}</p>
+      <div class="content-inner">
+        <div class="div-i">
+          <i class="fa-brands fa-bots"></i>
+        </div>
+        <div class="div-p">
+          <p>${title}</p>
+        </div>
+      </div>
     </div>
   `;
   newBox.className = className;
