@@ -6,7 +6,7 @@ import TextInput from "../stats/TextInput/TextInput";
 import TextareaInput from "../stats/TextareaInput/TextareaInput";
 import LinkInput from "../stats/LinkInput/LinkInput";
 import NumberInput from "../stats/NumberInput/NumberInput";
-import "./inputPage.css"; // CSS 파일 임포트 확인
+import "./inputPage.css";
 
 const models = [
   "모델을 선택해주세요",

@@ -11,6 +11,12 @@ const Stats = () => {
     checkAuthStatus(setIsLoggedIn);
   }, []);
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  }, [isLoggedIn]);
+
   const handleGetStarted = () => {
     if (isLoggedIn) {
       navigate('/input');
