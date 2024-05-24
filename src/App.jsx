@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../src/componets/Navbar/Navbar";
-import Home from "../src/componets/Home/Home";
-import Features from "../src/componets/Features/Features";
-import Stats from "../src/componets/stats/stats";
-import Footer from "../src/componets/Footer/Footer";
-import ScrollImg from "../src/assets/top.webp";
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./components/Home/Home";
+import Features from "./components/Features/Features";
+import Stats from "./components/stats/stats";
+import Footer from "./components/Footer/Footer";
+import ScrollImg from "./assets/top.webp";
+import InputPage from "./components/InputPage/InputPage";
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 const App = () => {
   const [showScrollToTop, setShowScrollToTop] = useState(false);
+  const location = useLocation();
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -32,25 +45,43 @@ const App = () => {
     };
   }, []);
 
+  const shouldRenderNavbar = location.pathname !== "/input";
+
   return (
     <div>
+      <ScrollToTop />
       <div className="apptop"></div>
-      <Navbar />
-      <Home />
-      <div className="featuretop"></div>
-      <Features />
-      <div className="generate"></div>
-      <Stats />
-      <div className="generate"></div>
-      <Footer />
-      <img
-        src={ScrollImg}
-        alt=""
-        className={`scrollToTop ${showScrollToTop ? "visible" : ""}`}
-        onClick={scrollToTop}
-      />
+      {shouldRenderNavbar && <Navbar />}
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Home />
+            <div className="featuretop"></div>
+            <Features />
+            <div className="generate"></div>
+            <Stats />
+            <div className="generate"></div>
+            <Footer />
+          </>
+        } />
+        <Route path="/input" element={<InputPage />} />
+      </Routes>
+      {shouldRenderNavbar && (
+        <img
+          src={ScrollImg}
+          alt=""
+          className={`scrollToTop ${showScrollToTop ? "visible" : ""}`}
+          onClick={scrollToTop}
+        />
+      )}
     </div>
   );
 };
 
-export default App;
+const AppWrapper = () => (
+  <Router basename="/LLMfront">
+    <App />
+  </Router>
+);
+
+export default AppWrapper;

@@ -34,5 +34,23 @@
         ]
       }
     ]
+  },
+  {
+    "id": 3,
+    "model": "mistral-7b-instruct-v0-2",
+    "bot_name": "Friendli",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "",
+    "data": [
+      {
+        "id": 3,
+        "title": "ㅇ",
+        "content": "ㅇ",
+        "links": [
+          ""
+        ]
+      }
+    ]
   }
 ]
