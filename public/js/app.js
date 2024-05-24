@@ -98,8 +98,9 @@ const createBoxElement = (id, model, title, content, links, className) => {
     </div>
     <div class="content-box">
       <div class="content-inner">
-        <div class="div-i">
+        <div class="div-i" id="botIcon-${id}">
           <i class="fa-brands fa-bots"></i>
+          <span class="tooltip-text">봇을 초대하려면 클릭하세요</span>
         </div>
         <div class="div-p">
           <p>${title}</p>
@@ -110,6 +111,13 @@ const createBoxElement = (id, model, title, content, links, className) => {
   newBox.className = className;
   newBox.id = id;
   newBox.dataset.links = JSON.stringify(links);
+
+  newBox.querySelector(`#botIcon-${id}`).addEventListener("click", () => {
+    const clientId = "1243106793832321054";
+    const redirectUri = `https://discord.com/oauth2/authorize?client_id=${clientId}&scope=bot&permissions=0`;
+    window.location.href = redirectUri;
+  });
+
   return newBox;
 };
 
