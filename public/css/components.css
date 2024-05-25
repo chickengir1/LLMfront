@@ -10,8 +10,9 @@
   width: 98%;
   height: 10rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(135deg, #99AAB5, #4E5D94);
-  opacity: 0.8;
+  background: #333;
+  opacity: 0.7;
+  color: #fff;
 }
 
 
@@ -23,7 +24,7 @@
   margin: 0 20px 0 15px;
   width: 20%;
   height: 100%;
-  background: linear-gradient(120deg, #7289DA, #8EA2F2, #AEB8FE, #F0F2FF, #AEB8FE, #8EA2F2, #7289DA);
+  background:#7289DA;  
   color: #fff;
   border-radius: 5px;
   background-size: 300% 200%;
