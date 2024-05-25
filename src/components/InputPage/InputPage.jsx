@@ -11,10 +11,19 @@ import "./inputPage.css";
 const models = [
   "모델을 선택해주세요",
   "meta-llama-3-70b-instruct",
-  "mistral-7b-instruct-v0-2",
+  "mistral-7b-instruct-v0-3",
   "mixtral-8x7b-instruct-v0-1",
   "gemma-7b-it",
 ];
+
+const models1 = [
+  "모델을 선택해주세요",
+  "meta-llama-3-70b-instruct",
+  "mistral-7b-instruct-v0-3",
+  "mixtral-8x7b-instruct-v0-1",
+  "gemma-7b-it",
+];
+
 
 const InputPage = () => {
   const navigate = useNavigate();
@@ -24,6 +33,7 @@ const InputPage = () => {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
   const [selectedModel, setSelectedModel] = useState(models[0]);
+  const [selectedModel1, setSelectedModel1] = useState(models1[0]);
   const [temperature, setTemperature] = useState(0.7);
   const [responseMaxTokens, setResponseMaxTokens] = useState(200);
   const [persona, setPersona] = useState("");
@@ -68,9 +78,15 @@ const InputPage = () => {
         throw new Error('모델을 선택해주세요');
       }
 
+      
+      if (selectedModel1 === "모델을 선택해주세요") {
+        throw new Error('모델을 선택해주세요');
+      }
+
       const newModel = {
         id: newId,
         model: selectedModel,
+        model1: selectedModel1,
         bot_name: "Friendli",
         temperature,
         response_max_tokens: responseMaxTokens,
@@ -108,8 +124,11 @@ const InputPage = () => {
         <div className="area">
           <ModelDropdown
             models={models}
+            models1={models1}
             selectedModel={selectedModel}
+            selectedModel1={selectedModel1}
             setSelectedModel={setSelectedModel}
+            setSelectedModel1={setSelectedModel1}
           />
           <TextInput
             label="이름 입력"
