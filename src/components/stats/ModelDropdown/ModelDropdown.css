@@ -3,28 +3,12 @@
   align-items: center;
 }
 
-.Model-Section > label {
-  margin-right: 10px; /* label과 dropdown 간의 간격 */
-}
-
 .model-dropdown {
   background: #fff;
   font-size: 14px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 24rem;
+  width: 50rem;
   height: 45px;
-  margin-right: 2rem;
 }
-
-
-.model-dropdown1 {
-  background: #fff;
-  font-size: 14px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 24rem;
-  height: 45px;
-  }
