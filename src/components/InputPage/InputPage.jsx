@@ -76,6 +76,7 @@ const InputPage = () => {
         temperature,
         response_max_tokens: responseMaxTokens,
         persona,
+        data: [newBox]
       };
 
       const saveResponse = await fetch('/api/save', {
