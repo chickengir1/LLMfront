@@ -1,36 +1,9 @@
 [
   {
     "id": 1,
-    "model": "meta-llama-3-70b-instruct",
+    "model": "mistral-7b-instruct-v0-3",
     "temperature": 0.7,
     "response_max_tokens": 200,
-    "persona": "",
-    "data": [
-      {
-        "id": 1,
-        "title": "11111",
-        "content": "1111",
-        "links": [
-          ""
-        ]
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "model": "mixtral-8x7b-instruct-v0-1",
-    "temperature": 0.7,
-    "response_max_tokens": 200,
-    "persona": "",
-    "data": [
-      {
-        "id": 2,
-        "title": "123",
-        "content": "123",
-        "links": [
-          ""
-        ]
-      }
-    ]
+    "persona": ""
   }
 ]
