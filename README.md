@@ -1,8 +1,19 @@
-# React + Vite
+프로젝트 설명: Discord Bot이 더 이상 딱딱한 관리자가 아닌, 감성있고 재치있는 친구가 되어 줍니다.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+본 프로젝트는 Discord 서버의 특색에 맞는 자아와 기능을 가진 bot과 이를 설정하는 대시보드 웹으로 구성됩니다.
 
-Currently, two official plugins are available:
+FriendliAI의 Serverless Endpoint를 이용한 RSS 요약 기능(또는 general summarizer)을 통해 다양한 정보를 요약하여 제공할 수 있을 것입니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+이전에 ChatGPT API를 이용하여 구현한 Discord Bot이 재밌게 쓰여서 이를 확장하려고 합니다. 다음은 사용 예시입니다.
+
+1.  서버 페이지에 접속 후 디스코드에 로그인합니다.
+
+2.  디스코드에 로그인 후 가장 하단으로 내려가 봇을 생성합니다.
+
+3.  사용자의 요구대로 봇을 생성한 후 상단으로 올려갑니다.
+
+4.  MANAGE SERVER 버튼을 눌러 대시보드로 이동합니다.
+
+5.  대시보드에 생성된 BOT 블럭의 BOT 아이콘을 눌러 디스코드 서버에 추가합니다.
+
+6.  서버에 생성된 디스코드 봇과 자유롭게 소통하세요.
