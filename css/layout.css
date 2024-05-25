@@ -28,9 +28,23 @@ main {
     border-radius: 1rem;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(135deg, #99AAB5, #4E5D94);
-  }
+   
+    background: linear-gradient(135deg, #7289DA, #AEB8FE, #D2D8FE, #F0F2FF, #D2D8FE, #AEB8FE, #7289DA);
+  background-size: 200% 200%;
+  animation: gradientBackground 5s linear infinite;
 
+  }
+  
+
+  @keyframes gradientBackground {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+  
   .footer {
     width: 90vw;
     height: 10vh;

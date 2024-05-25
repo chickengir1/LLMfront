@@ -1,72 +1,21 @@
 [
   {
     "id": 1,
-    "model": "mixtral-8x7b-instruct-v0-1",
+    "model": "mistral-7b-instruct-v0-3",
+    "model1": "mistral-7b-instruct-v0-3",
     "bot_name": "Friendli",
     "temperature": 0.7,
     "response_max_tokens": 200,
-    "persona": "",
+    "persona": "잘하자",
     "data": [
       {
         "id": 1,
-        "title": "테스트1테스트1테스트1",
-        "content": "ㅇㅇ",
+        "title": "123",
+        "content": "123",
         "links": [
-          ""
-        ]
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "model": "mistral-7b-instruct-v0-2",
-    "bot_name": "Friendli",
-    "temperature": 0.7,
-    "response_max_tokens": 200,
-    "persona": "",
-    "data": [
-      {
-        "id": 2,
-        "title": "테스트2테스트2테스트2",
-        "content": "ㅇㅇ",
-        "links": [
-          ""
-        ]
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "model": "mistral-7b-instruct-v0-2",
-    "bot_name": "Friendli",
-    "temperature": 0.7,
-    "response_max_tokens": 200,
-    "persona": "",
-    "data": [
-      {
-        "id": 3,
-        "title": "테스트3테스트3테스트3",
-        "content": "3",
-        "links": [
-          ""
-        ]
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "model": "mistral-7b-instruct-v0-2",
-    "bot_name": "Friendli",
-    "temperature": 0.7,
-    "response_max_tokens": 200,
-    "persona": "",
-    "data": [
-      {
-        "id": 4,
-        "title": "dd",
-        "content": "dd",
-        "links": [
-          ""
+          "11",
+          "1223",
+          "11333"
         ]
       }
     ]
