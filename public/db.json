@@ -16,5 +16,23 @@
         ]
       }
     ]
+  },
+  {
+    "id": 2,
+    "model": "mistral-7b-instruct-v0-3",
+    "model1": "mistral-7b-instruct-v0-3",
+    "temperature": 0.7,
+    "response_max_tokens": 200,
+    "persona": "",
+    "data": [
+      {
+        "id": 2,
+        "title": "1231231",
+        "content": "123",
+        "links": [
+          ""
+        ]
+      }
+    ]
   }
 ]
