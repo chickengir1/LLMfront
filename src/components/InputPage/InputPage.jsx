@@ -87,7 +87,6 @@ const InputPage = () => {
         id: newId,
         model: selectedModel,
         model1: selectedModel1,
-        bot_name: "Friendli",
         temperature,
         response_max_tokens: responseMaxTokens,
         persona,
