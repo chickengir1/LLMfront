@@ -11,7 +11,7 @@
   height: 10rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background: #444;
-  opacity: 0.7;
+  opacity: 0.5.;
   color: #fff;
 }
 
@@ -22,11 +22,12 @@
   justify-content: center;
   align-items: center;
   margin: 0 20px 0 15px;
-  width: 20%;
-  height: 100%;
+  width: 32.5%;
+  height: 90%;
+  border: 3px solid #fff;
   background:#7289DA;  
   color: #fff;
-  opacity: 0.7;
+  opacity: 1;
   border-radius: 10px;
   background-size: 300% 200%;
 }
@@ -43,10 +44,10 @@
   align-items: center;
   background-color: #fff;
   color: black;
-  width: 10rem;
+  width: 20rem;
   min-height: 3rem;
   max-height: 4rem;
-  border: 1px solid #7289DA;
+  border: 3px solid #7289DA;
   border-radius: 10px;
   padding: 10px;
   text-align: center;
@@ -125,11 +126,13 @@
 
 .new-box > .content-box > .content-inner > .div-p {
   width: 90%;
-  height: 90%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden; 
+  border: 3px solid #fff;
+  border-radius: 10px;
 }
 
 .new-box > .content-box > .content-inner > .div-p > p {
