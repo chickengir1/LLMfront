@@ -6,7 +6,9 @@
 
 이를 통해 Discord 서버의 특색에 맞춘 자아와 기능을 가진 봇과 이를 설정할 수 있는 대시보드 웹을 구현합니다.
 
-주요 기능:RSS 요약 기능: FriendliAI의 Serverless Endpoint를 이용하여 다양한 정보를 요약하여 제공
+주요 기능:RSS 요약
+
+기능: FriendliAI의 Serverless Endpoint를 이용하여 다양한 정보를 요약하여 제공
 
 재미있는 상호작용: 이전에 ChatGPT API를 이용해 구현한 Discord Bot의 재미 요소를 확장사용 예시서버 페이지 접속 및 로그인서버 페이지에 접속한 후, Discord 계정으로 로그인합니다.
 
